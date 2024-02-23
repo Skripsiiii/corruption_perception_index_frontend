@@ -38,9 +38,9 @@ public class IntroActivity extends AppCompatActivity {
         nextButton = findViewById(R.id.next_button_layout);
 
         mList = new ArrayList<>();
-        mList.add(new ScreenItem("What is CPI?", "Corruption Perception Index, abbreviated as CPI, is an index of corruption on regional basis.", R.drawable.pie_chart));
-        mList.add(new ScreenItem("CPI Score", "CPI is represented on a scale of 0-100, where 0 indicates a region is highly corrupt, and 100 is very clean.", R.drawable.earth));
-        mList.add(new ScreenItem("Let’s Eradicate Corruption", "Your participation filling the questionnaire of corruption perspective is a precious contribution for corruption eradication in Indonesia.", R.drawable.pie_chart));
+        mList.add(new ScreenItem("What is CPI?", "Corruption Perception Index, abbreviated as CPI, is an index of corruption on regional basis.", R.mipmap.pie_chart));
+        mList.add(new ScreenItem("CPI Score", "CPI is represented on a scale of 0-100, where 0 indicates a region is highly corrupt, and 100 is very clean.", R.mipmap.earth));
+        mList.add(new ScreenItem("Let’s Eradicate Corruption", "Your participation filling the questionnaire of corruption perspective is a precious contribution for corruption eradication in Indonesia.", R.mipmap.pie_chart));
 
         introViewPagerAdapter = new IntroViewPagerAdapter(this, mList);
         screenPager.setAdapter(introViewPagerAdapter);
