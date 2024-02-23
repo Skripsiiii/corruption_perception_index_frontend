@@ -48,6 +48,7 @@
             android:layout_weight="20"
             android:padding="10dp"
             android:text="TextView"
+            android:gravity="center"
             android:textColor="@color/black"
             android:textSize="24dp"
             android:textStyle="bold" />
