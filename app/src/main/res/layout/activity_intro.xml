@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".components.intro.IntroActivity">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/screen_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.viewpager2.widget.ViewPager2>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/dot_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/dot1"
+                android:layout_width="20dp"
+                android:layout_height="8dp"
+                android:layout_marginRight="2dp"
+                android:background="@drawable/rounded_background"
+                android:backgroundTint="@color/blue" />
+
+            <RelativeLayout
+                android:id="@+id/dot2"
+                android:layout_width="20dp"
+                android:layout_height="8dp"
+                android:layout_marginRight="2dp"
+                android:background="@drawable/rounded_background"
+                android:backgroundTint="@color/blue" />
+
+            <RelativeLayout
+                android:id="@+id/dot3"
+                android:layout_width="20dp"
+                android:layout_height="8dp"
+                android:layout_marginRight="2dp"
+                android:background="@drawable/rounded_background"
+                android:backgroundTint="@color/blue" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/next_button_layout"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/circular_bg"
+            android:backgroundTint="@color/black"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/next_button"
+                android:layout_width="18dp"
+                android:layout_height="36dp"
+                android:src="@drawable/arrow_right_icon"
+                app:tint="@color/white"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
