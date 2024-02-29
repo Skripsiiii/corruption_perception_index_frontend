@@ -1,4 +1,4 @@
-package com.example.corruptionperceptionindex.fragments;
+package com.example.corruptionperceptionindex.src.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,13 +12,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.corruptionperceptionindex.R;
-import com.example.corruptionperceptionindex.items.ScreenItem;
+import com.example.corruptionperceptionindex.src.items.IntroItem;
 
 public class IntroFragment extends Fragment {
 
     private static final String ARG_SCREEN_ITEM = "screenItem";
-    private ScreenItem mScreenItem;
-    public static IntroFragment newInstance(ScreenItem screenItem) {
+    private IntroItem mIntroItem;
+    public static IntroFragment newInstance(IntroItem screenItem) {
         IntroFragment fragment = new IntroFragment();
         Bundle args = new Bundle();
         args.putSerializable(ARG_SCREEN_ITEM, screenItem);
@@ -30,23 +30,23 @@ public class IntroFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mScreenItem = (ScreenItem) getArguments().getSerializable(ARG_SCREEN_ITEM);
+            mIntroItem = (IntroItem) getArguments().getSerializable(ARG_SCREEN_ITEM);
         }
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.layout_screen, container, false);
+        View rootView = inflater.inflate(R.layout.layout_intro, container, false);
 
         ImageView imageView = rootView.findViewById(R.id.intro_image);
         TextView titleTextView = rootView.findViewById(R.id.intro_title);
         TextView descriptionTextView = rootView.findViewById(R.id.intro_description);
 
-        if (mScreenItem != null) {
-            imageView.setImageResource(mScreenItem.getScreenImg());
-            titleTextView.setText(mScreenItem.getTitle());
-            descriptionTextView.setText(mScreenItem.getDescription());
+        if (mIntroItem != null) {
+            imageView.setImageResource(mIntroItem.getScreenImg());
+            titleTextView.setText(mIntroItem.getTitle());
+            descriptionTextView.setText(mIntroItem.getDescription());
         }
 
         return rootView;

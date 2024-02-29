@@ -1,14 +1,14 @@
-package com.example.corruptionperceptionindex.items;
+package com.example.corruptionperceptionindex.src.items;
 
 import java.io.Serializable;
 
-public class ScreenItem implements Serializable {
+public class IntroItem implements Serializable {
 
     private String Title;
     private String Description;
     private int ScreenImg;
 
-    public ScreenItem(String title, String description, int screenImg) {
+    public IntroItem(String title, String description, int screenImg) {
         Title = title;
         Description = description;
         ScreenImg = screenImg;

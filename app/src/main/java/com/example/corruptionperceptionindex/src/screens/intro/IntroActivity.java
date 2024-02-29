@@ -1,8 +1,9 @@
-package com.example.corruptionperceptionindex.components.intro;
+package com.example.corruptionperceptionindex.src.screens.intro;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.View;
@@ -12,9 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.corruptionperceptionindex.MainActivity;
 import com.example.corruptionperceptionindex.R;
-import com.example.corruptionperceptionindex.adapter.IntroViewPagerAdapter;
-import com.example.corruptionperceptionindex.items.ScreenItem;
+import com.example.corruptionperceptionindex.src.adapter.IntroViewPagerAdapter;
+import com.example.corruptionperceptionindex.src.items.IntroItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,7 @@ public class IntroActivity extends AppCompatActivity {
     private RelativeLayout nextButton;
     private TextView participateNowTextView;
     IntroViewPagerAdapter introViewPagerAdapter;
-    private List<ScreenItem> mList;
+    private List<IntroItem> mList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +40,9 @@ public class IntroActivity extends AppCompatActivity {
         nextButton = findViewById(R.id.next_button_layout);
 
         mList = new ArrayList<>();
-        mList.add(new ScreenItem("What is CPI?", "Corruption Perception Index, abbreviated as CPI, is an index of corruption on regional basis.", R.mipmap.pie_chart));
-        mList.add(new ScreenItem("CPI Score", "CPI is represented on a scale of 0-100, where 0 indicates a region is highly corrupt, and 100 is very clean.", R.mipmap.earth));
-        mList.add(new ScreenItem("Let’s Eradicate Corruption", "Your participation filling the questionnaire of corruption perspective is a precious contribution for corruption eradication in Indonesia.", R.mipmap.pie_chart));
+        mList.add(new IntroItem("What is CPI?", "Corruption Perception Index, abbreviated as CPI, is an index of corruption on regional basis.", R.mipmap.pie_chart));
+        mList.add(new IntroItem("CPI Score", "CPI is represented on a scale of 0-100, where 0 indicates a region is highly corrupt, and 100 is very clean.", R.mipmap.earth));
+        mList.add(new IntroItem("Let’s Eradicate Corruption", "Your participation filling the questionnaire of corruption perspective is a precious contribution for corruption eradication in Indonesia.", R.mipmap.pie_chart));
 
         introViewPagerAdapter = new IntroViewPagerAdapter(this, mList);
         screenPager.setAdapter(introViewPagerAdapter);
@@ -54,6 +56,7 @@ public class IntroActivity extends AppCompatActivity {
                 setDotColor(position);
                 if (position == mList.size() - 1) {
                     changeNextButtonLayout(true);
+                    nextButton.setOnClickListener(v -> startActivity(new Intent(IntroActivity.this, MainActivity.class  )));
                 } else {
                     changeNextButtonLayout(false);
                 }

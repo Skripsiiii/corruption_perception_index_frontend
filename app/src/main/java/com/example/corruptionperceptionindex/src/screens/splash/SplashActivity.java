@@ -1,4 +1,4 @@
-package com.example.corruptionperceptionindex.components.splash;
+package com.example.corruptionperceptionindex.src.screens.splash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.corruptionperceptionindex.R;
-import com.example.corruptionperceptionindex.components.intro.IntroActivity;
+import com.example.corruptionperceptionindex.src.screens.intro.IntroActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
