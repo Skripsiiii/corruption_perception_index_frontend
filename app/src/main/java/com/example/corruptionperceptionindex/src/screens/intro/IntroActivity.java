@@ -13,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.corruptionperceptionindex.MainActivity;
 import com.example.corruptionperceptionindex.R;
 import com.example.corruptionperceptionindex.src.adapter.IntroViewPagerAdapter;
 import com.example.corruptionperceptionindex.src.items.IntroItem;
@@ -73,7 +72,7 @@ public class IntroActivity extends AppCompatActivity {
         });
     }
     private void changeNextButtonLayout(boolean isLastPage) {
-        nextButton.setBackgroundResource(isLastPage ? R.drawable.rounded_button_background : R.drawable.circular_bg);
+        nextButton.setBackgroundResource(isLastPage ? R.drawable.circular_button_background : R.drawable.circular_bg);
 
         ViewGroup.LayoutParams layoutParams = nextButton.getLayoutParams();
         layoutParams.width = getResources().getDimensionPixelSize(isLastPage ? R.dimen.new_button_width : R.dimen.old_button_width);
@@ -106,7 +105,7 @@ public class IntroActivity extends AppCompatActivity {
             if (i == position) {
                 dotLayout.getChildAt(i).setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.black)));
             } else {
-                dotLayout.getChildAt(i).setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.blue)));
+                dotLayout.getChildAt(i).setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondary_500)));
             }
         }
     }
