@@ -2,4 +2,11 @@
 <resources>
     <dimen name="new_button_width">170dp</dimen>
     <dimen name="old_button_width">50dp</dimen>
+
+    <dimen name="margin_bottom_textview_percentage">5%</dimen>
+
+    <dimen name="margin_bottom_textview">
+        <item type="dimen" name="screen_height">android:dimen/screen_height</item>
+        <item type="fraction">screen_height * margin_bottom_textview_percentage</item>
+    </dimen>
 </resources>

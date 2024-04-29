@@ -25,12 +25,10 @@ public class HashPassword {
             e.printStackTrace();
         }
 
-        // Combine salt and hash
         byte[] combined = new byte[saltBytes.length + hash.length];
         System.arraycopy(saltBytes, 0, combined, 0, saltBytes.length);
         System.arraycopy(hash, 0, combined, saltBytes.length, hash.length);
 
-        // Convert to Base64 for storage
         return Base64.getEncoder().encodeToString(combined);
     }
 
