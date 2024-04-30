@@ -25,7 +25,7 @@ public class ShowHidePassword {
     }
 
     public static void onViewIconClick2(EditText confirmPasswordTxt, ImageView showHide) {
-        boolean isConfirmPasswordVisible = confirmPasswordTxt.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);;
+        boolean isConfirmPasswordVisible = confirmPasswordTxt.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
         isConfirmPasswordVisible = !isConfirmPasswordVisible;
 
         if (isConfirmPasswordVisible) {
