@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:drawable="@mipmap/hide"
-        android:width="25dp"
-        android:height="25dp"/>
+        android:drawable="@mipmap/hide"/>
+
+    <item android:id="@+id/white_icon_overlay">
+        <bitmap android:src="@mipmap/hide"
+            android:tint="@android:color/white" />
+    </item>
 </layer-list>
