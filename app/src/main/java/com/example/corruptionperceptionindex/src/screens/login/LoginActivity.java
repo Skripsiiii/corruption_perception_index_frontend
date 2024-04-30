@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import com.example.corruptionperceptionindex.R;
 
 public class LoginActivity extends AppCompatActivity {
 
 =======
+=======
+>>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Button;
@@ -28,14 +31,20 @@ public class LoginActivity extends AppCompatActivity {
      String email, password;
      ImageView showHide;
 
+<<<<<<< HEAD
+>>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
+=======
 >>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 <<<<<<< HEAD
+<<<<<<< HEAD
     }
 =======
+=======
+>>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
 
         editTextEmailAddress = findViewById(R.id.editTextEmailAddress);
         editTextPassword = findViewById(R.id.editTextPassword);
@@ -87,5 +96,8 @@ public class LoginActivity extends AppCompatActivity {
 
         }
     };
+<<<<<<< HEAD
+>>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
+=======
 >>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
 }

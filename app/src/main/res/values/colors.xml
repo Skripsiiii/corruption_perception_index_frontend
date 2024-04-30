@@ -8,7 +8,11 @@
     <color name="gray">#767676</color>
     <color name="light_gray">#D9D9D9</color>
 
+<<<<<<< HEAD
 <!--<<<<<<< HEAD-->
+=======
+    <!-- Neutral Color     -->
+>>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
 =======
     <!-- Neutral Color     -->
 >>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
@@ -23,7 +27,11 @@
     <color name="neutral_800">#1E293B</color>
     <color name="neutral_900">#0F172A</color>
 
+<<<<<<< HEAD
 <!--<<<<<<< HEAD-->
+=======
+    <!-- Primary Color  -->
+>>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
 =======
     <!-- Primary Color  -->
 >>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
@@ -38,7 +46,11 @@
     <color name="primary_800">#1c215d</color>
     <color name="primary_900">#0e112e</color>
 
+<<<<<<< HEAD
 <!--<<<<<<< HEAD-->
+=======
+    <!-- Secondary Color  -->
+>>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
 =======
     <!-- Secondary Color  -->
 >>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
@@ -53,8 +65,11 @@
     <color name="secondary_800">#060c43</color>
     <color name="secondary_900">#030622</color>
 
+<<<<<<< HEAD
 <!--<<<<<<< HEAD-->
 =======
+=======
+>>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
     <!-- Border Color  -->
     <color name="border_50">#fdfdff</color>
     <color name="border_100">#fdfdff</color>
@@ -102,6 +117,9 @@
     <color name="danger_700">#990E30</color>
     <color name="danger_800">#730D29</color>
     <color name="danger_900">#540C22</color>
+<<<<<<< HEAD
+>>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
+=======
 >>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
 
 </resources>

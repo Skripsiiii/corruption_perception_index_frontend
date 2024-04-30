@@ -1,6 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+=======
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+>>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
 =======
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 >>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
@@ -9,10 +13,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 <<<<<<< HEAD
+<<<<<<< HEAD
     tools:context=".src.screens.login.LoginActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 =======
+=======
+>>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
     android:background="@color/white"
     tools:context=".src.screens.login.LoginActivity">
 
@@ -201,4 +208,7 @@
     </LinearLayout>
 
 </RelativeLayout>
+<<<<<<< HEAD
+>>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
+=======
 >>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
