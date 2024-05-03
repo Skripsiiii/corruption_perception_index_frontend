@@ -1,117 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <!-- Title for Nama -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        android:text="Jenis Kelamin"/>
+        android:text="Jenis Kelamin" />
 
-    <!-- Nama EditText -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/genderLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:hint="Jenis Kelamin"
-        app:endIconMode="clear_text">
+        android:layout_marginTop="10dp"
+        app:endIconMode="clear_text"
+        android:background="@drawable/spinner_border">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nama"
+        <Spinner
+            android:id="@+id/genderSpiner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:backgroundTint="@color/white"
+            android:popupBackground="@color/white"
+            android:background="@android:color/transparent" />
 
-    <!-- Title for Email -->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:src="@drawable/ic_dropdown_arrow" />
+
+    </FrameLayout>
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        android:text="Email"/>
+        android:text="Tanggal Lahir" />
 
-    <!-- Email EditText -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/emailLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:hint="Email"
-        app:endIconMode="clear_text">
+        android:layout_marginTop="10dp"
+        app:endIconMode="clear_text"
+        android:background="@drawable/spinner_border">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/password"
+        <Spinner
+            android:id="@+id/dateSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:backgroundTint="@color/white"
+            android:popupBackground="@color/white"
+            android:background="@android:color/transparent" />
 
-    <!-- Title for Password -->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:src="@drawable/ic_dropdown_arrow" />
+
+    </FrameLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        android:text="Password"/>
+        android:text="Pendidikan" />
 
-    <!-- Password EditText -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:hint="Password"
-        app:endIconMode="clear_text">
+        android:layout_marginTop="10dp"
+        app:endIconMode="clear_text"
+        android:background="@drawable/spinner_border">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passwordd"
+        <Spinner
+            android:id="@+id/educationSpiner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:backgroundTint="@color/white"
+            android:popupBackground="@color/white"
+            android:background="@android:color/transparent" />
 
-    <!-- Title for Confirm Password -->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:src="@drawable/ic_dropdown_arrow" />
+
+    </FrameLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        android:text="Konfirmasi Password"/>
+        android:text="Pekerjaan" />
 
-    <!-- Confirm Password EditText -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/confirmPasswordLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:hint="Konfirmasi Password"
-        app:endIconMode="clear_text">
+        android:layout_marginTop="10dp"
+        app:endIconMode="clear_text"
+        android:background="@drawable/spinner_border">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/confirmPassword"
+        <Spinner
+            android:id="@+id/occupationSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:backgroundTint="@color/white"
+            android:popupBackground="@color/white"
+            android:background="@android:color/transparent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:src="@drawable/ic_dropdown_arrow" />
+
+    </FrameLayout>
 
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/primary_500"
+        android:backgroundTint="@color/gray"
         android:text="LOGIN"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white" />
 
 </LinearLayout>

@@ -8,14 +8,6 @@
     <color name="gray">#767676</color>
     <color name="light_gray">#D9D9D9</color>
 
-<<<<<<< HEAD
-<!--<<<<<<< HEAD-->
-=======
-    <!-- Neutral Color     -->
->>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
-=======
-    <!-- Neutral Color     -->
->>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
     <color name="neutral_50">#F8FAFC</color>
     <color name="neutral_100">#F1F5F9</color>
     <color name="neutral_200">#E2E8F0</color>
@@ -27,14 +19,6 @@
     <color name="neutral_800">#1E293B</color>
     <color name="neutral_900">#0F172A</color>
 
-<<<<<<< HEAD
-<!--<<<<<<< HEAD-->
-=======
-    <!-- Primary Color  -->
->>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
-=======
-    <!-- Primary Color  -->
->>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
     <color name="primary_50">#eceefd</color>
     <color name="primary_100">#daddfa</color>
     <color name="primary_200">#b5baf6</color>
@@ -46,14 +30,6 @@
     <color name="primary_800">#1c215d</color>
     <color name="primary_900">#0e112e</color>
 
-<<<<<<< HEAD
-<!--<<<<<<< HEAD-->
-=======
-    <!-- Secondary Color  -->
->>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
-=======
-    <!-- Secondary Color  -->
->>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
     <color name="secondary_50">#e7e8f6</color>
     <color name="secondary_100">#cfd2ee</color>
     <color name="secondary_200">#9fa5dc</color>
@@ -65,61 +41,5 @@
     <color name="secondary_800">#060c43</color>
     <color name="secondary_900">#030622</color>
 
-<<<<<<< HEAD
-<!--<<<<<<< HEAD-->
-=======
-=======
->>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
-    <!-- Border Color  -->
-    <color name="border_50">#fdfdff</color>
-    <color name="border_100">#fdfdff</color>
-    <color name="border_200">#fafcff</color>
-    <color name="border_300">#f6f8ff</color>
-    <color name="border_400">#f1f5ff</color>
-    <color name="border_500">#E8EEFF</color>
-    <color name="border_600">#babecc</color>
-    <color name="border_700">#8b8f99</color>
-    <color name="border_800">#5d5f66</color>
-    <color name="border_900">#2e3033</color>
-
-    <!-- Warning Color -->
-    <color name="warning_50">#FFF6E5</color>
-    <color name="warning_100">#FFEDCC</color>
-    <color name="warning_200">#FFE0A6</color>
-    <color name="warning_300">#FFD380</color>
-    <color name="warning_400">#F9C257</color>
-    <color name="warning_500">#F9B42D</color>
-    <color name="warning_600">#D99516</color>
-    <color name="warning_700">#B27B12</color>
-    <color name="warning_800">#8C610E</color>
-    <color name="warning_900">#66460A</color>
-
-    <!-- Success Color -->
-    <color name="success_50">#F4FBF7</color>
-    <color name="success_100">#E1FAED</color>
-    <color name="success_200">#CEF5E1</color>
-    <color name="success_300">#AEE5C9</color>
-    <color name="success_400">#6CCB9C</color>
-    <color name="success_500">#359766</color>
-    <color name="success_600">#2D8057</color>
-    <color name="success_700">#246646</color>
-    <color name="success_800">#1B4C33</color>
-    <color name="success_900">#123222</color>
-
-    <!-- Danger Color -->
-    <color name="danger_50">#FFF1F2</color>
-    <color name="danger_100">#FFE4E6</color>
-    <color name="danger_200">#FECDD3</color>
-    <color name="danger_300">#FDA4AF</color>
-    <color name="danger_400">#FB7185</color>
-    <color name="danger_500">#F43F5E</color>
-    <color name="danger_600">#CC1A41</color>
-    <color name="danger_700">#990E30</color>
-    <color name="danger_800">#730D29</color>
-    <color name="danger_900">#540C22</color>
-<<<<<<< HEAD
->>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
-=======
->>>>>>> fc2747f7a755e9af0f8bed5a8478ef545c84a638
 
 </resources>

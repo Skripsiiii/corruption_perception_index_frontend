@@ -15,7 +15,9 @@ import android.widget.TextView;
 
 import com.example.corruptionperceptionindex.R;
 import com.example.corruptionperceptionindex.src.adapter.IntroViewPagerAdapter;
+import com.example.corruptionperceptionindex.src.fragments.RegisterFragment;
 import com.example.corruptionperceptionindex.src.items.IntroItem;
+import com.example.corruptionperceptionindex.src.register.firstRegister;
 import com.example.corruptionperceptionindex.src.screens.login.LoginActivity;
 
 import java.util.ArrayList;
@@ -56,7 +58,7 @@ public class IntroActivity extends AppCompatActivity {
                 setDotColor(position);
                 if (position == mList.size() - 1) {
                     changeNextButtonLayout(true);
-                    nextButton.setOnClickListener(v -> startActivity(new Intent(IntroActivity.this, LoginActivity.class  )));
+                    nextButton.setOnClickListener(v -> startActivity(new Intent(IntroActivity.this, RegisterFragment.class  )));
                 } else {
                     changeNextButtonLayout(false);
                 }
