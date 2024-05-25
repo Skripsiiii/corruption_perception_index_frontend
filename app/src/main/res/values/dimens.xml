@@ -9,4 +9,10 @@
         <item type="dimen" name="screen_height">android:dimen/screen_height</item>
         <item type="fraction">screen_height * margin_bottom_textview_percentage</item>
     </dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

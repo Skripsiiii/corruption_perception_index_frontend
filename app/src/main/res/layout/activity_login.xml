@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,182 +12,242 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imgLogo"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginBottom="20dp"
-            android:layout_weight="0"
-            android:src="@mipmap/logo" />
-
         <TextView
             android:id="@+id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/app_name"
-            android:textColor="@color/secondary_500"
+            android:text="@string/loginTitle"
             android:textSize="24dp"
             android:textStyle="bold" />
 
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="230dp"
+            android:layout_height="230dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="0"
+            android:src="@mipmap/newlogin" />
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="50dp"
-            android:layout_weight="1"
-            android:layout_marginBottom="-16dp"
-            android:background="@drawable/login_circular_bg"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:orientation="vertical"
-            >
+            android:weightSum="1">
+
+            <EditText
+                android:id="@+id/editTextEmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="60dp"
+                android:layout_weight="0"
+                android:background="@drawable/rounded_background"
+                android:drawableStart="@drawable/custom_person"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:padding="10dp"
+                android:textColorHint="@color/black"
+                android:textSize="12dp"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,TextSizeCheck" />
+
+
+            <LinearLayout
+                android:id="@+id/passwordTxtLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_background"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                android:weightSum="6">
+
+                <EditText
+                    android:id="@+id/editTextPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="5"
+                    android:background="@drawable/circular_bg"
+                    android:drawableStart="@drawable/custom_lock"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:paddingStart="-1dp"
+                    android:textColorHint="@color/black"
+                    android:textSize="12dp"
+                    tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/showHide"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:onClick="onViewIconClick1"
+                    android:src="@drawable/view_icon"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/linkForgotPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="end"
+                android:text="Lupa Kata Sandi?"
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                tools:ignore="TextSizeCheck" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="20dp"
-                android:orientation="vertical"
-                android:weightSum="1">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txtIntro"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/welcome"
-                    android:textColor="@color/white"
-                    android:textSize="24dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:text="Kata sandi harus ada:"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/txtDesc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Silakan masuk dengan akun anda!"
-                    android:textColor="@color/white"
-                    android:textSize="12dp"
-                    android:textStyle="bold"
-                    tools:ignore="TextSizeCheck" />
-
-                <EditText
-                    android:id="@+id/editTextEmailAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="60dp"
-                    android:layout_weight="0"
-                    android:background="@drawable/rounded_background"
-                    android:ems="10"
-                    android:hint="@string/email"
-                    android:inputType="textEmailAddress"
-                    android:padding="10dp"
-                    android:drawablePadding="10dp"
-                    android:drawableStart="@drawable/custom_person"
-                    android:drawableTint="@color/white"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
-                    android:textSize="12dp"
-                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,TextSizeCheck" />
-
-
                 <LinearLayout
-                    android:id="@+id/passwordTxtLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/rounded_background"
-                    android:gravity="center"
-                    android:paddingHorizontal="10dp"
-                    android:weightSum="6"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/editTextPassword"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:layout_weight="5"
-                        android:paddingStart="-1dp"
-                        android:background="@drawable/circular_bg"
-                        android:ems="10"
-                        android:hint="@string/password"
-                        android:inputType="textPassword"
-                        android:textColor="@color/white"
-                        android:textColorHint="@color/white"
-                        android:textSize="12dp"
-                        android:drawableStart="@drawable/custom_lock"
-                        android:drawableTint="@color/white"
-                        android:drawablePadding="10dp"
-                        tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
+                    android:layout_marginTop="10dp">
 
                     <ImageView
-                        android:id="@+id/showHide"
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:layout_weight="1"
-                        android:onClick="onViewIconClick1"
-                        android:src="@drawable/view_icon"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        android:id="@+id/unchaked1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        app:srcCompat="@drawable/baseline_check_circle_outline_24" />
+
+                    <ImageView
+                        android:id="@+id/cheked1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        app:srcCompat="@drawable/baseline_check_circle_24" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Setidaknya satu huruf (huruf besar atau kecil)"
+                        android:textStyle="normal" />
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/linkForgotPassword"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="end"
-                    android:text="Lupa Kata Sandi?"
-                    android:textColor="@color/white"
-                    android:textSize="10dp"
-                    android:textStyle="bold"
-                    tools:ignore="TextSizeCheck" />
+                    android:layout_marginTop="5dp">
 
-                <Button
-                    android:id="@+id/btnLogin"
+                    <ImageView
+                        android:id="@+id/unchaked2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        app:srcCompat="@drawable/baseline_check_circle_outline_24" />
+
+                    <ImageView
+                        android:id="@+id/cheked2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        app:srcCompat="@drawable/baseline_check_circle_24" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Panjangnya minimal 6 karakter"
+                        android:textStyle="normal" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
-                    android:background="@drawable/rounded_button"
-                    android:text="@string/login"
-                    android:textColor="@color/white"
-                    android:textSize="14dp"
-                    tools:ignore="TextSizeCheck" />
+                    android:layout_marginTop="5dp">
+
+                    <ImageView
+                        android:id="@+id/unchaked3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        app:srcCompat="@drawable/baseline_check_circle_outline_24" />
+
+                    <ImageView
+                        android:id="@+id/cheked3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        app:srcCompat="@drawable/baseline_check_circle_24" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Berisi setidaknya satu digit."
+                        android:textStyle="normal" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/bottomLinearLayout"
-                android:layout_width="match_parent"
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/backgroundhome"
+            android:backgroundTint="@color/gray"
+            android:text="DAFTAR"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:id="@+id/bottomLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtDontHaveAccount"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="16dp"
-                android:layout_alignParentBottom="true">
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="Belum punya akun? "
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                tools:ignore="TextSizeCheck" />
 
-                <TextView
-                    android:id="@+id/txtDontHaveAccount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:text="Belum punya akun? "
-                    android:textColor="@color/white"
-                    android:textSize="10dp"
-                    android:textStyle="bold"
-                    tools:ignore="TextSizeCheck" />
-
-                <TextView
-                    android:id="@+id/linkRegister"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="start"
-                    android:text="Daftar Sekarang"
-                    android:textColor="@color/secondary_700"
-                    android:textSize="10dp"
-                    android:textStyle="bold"
-                    tools:ignore="TextSizeCheck" />
-            </LinearLayout>
-
-        </RelativeLayout>
+            <TextView
+                android:id="@+id/linkRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="Daftar Sekarang"
+                android:textColor="@color/secondary_700"
+                android:textStyle="bold"
+                tools:ignore="TextSizeCheck" />
+        </LinearLayout>
 
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

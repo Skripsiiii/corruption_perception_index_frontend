@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/mainBottom"
+        android:title="Home"
+        android:icon="@mipmap/mainnavbott"/>
+
+    <item
+        android:id="@+id/kuesionerBottom"
+        android:title="Kuesioner"
+        android:icon="@mipmap/kuesnavbott" />
+
+    <item
+        android:id="@+id/mapBottom"
+        android:title="Map"
+        android:icon="@mipmap/mapnavbott" />
+
+    <item
+        android:id="@+id/dataBottom"
+        android:title="Data"
+        android:icon="@mipmap/datanavbott" />
+
+</menu>

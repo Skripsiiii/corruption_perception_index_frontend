@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    android:background="@color/white"
+    android:backgroundTint="@color/white">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/myProfile"
+            android:icon="@mipmap/vetor"
+            android:title="Profile Saya" />
+
+        <item
+            android:id="@+id/changePassword"
+            android:icon="@mipmap/chabgepassword"
+            android:title="Ubah kata sandi" />
+
+        <item
+            android:id="@+id/domisili"
+            android:icon="@mipmap/domisili"
+            android:title="Domisili Saya" />
+
+        <item
+            android:id="@+id/persepsi"
+            android:icon="@mipmap/persepsi"
+            android:title="Persepsi Saya" />
+
+        <item
+            android:id="@+id/kuesioner"
+            android:icon="@mipmap/kuesioner"
+            android:title="Kuesioner Saya" />
+
+    </group>
+
+    <item
+        android:title="">
+
+        <menu>
+            <item
+                android:id="@+id/logOut"
+                android:icon="@mipmap/logout"
+                android:title="Log Out" />
+        </menu>
+
+    </item>
+
+</menu>

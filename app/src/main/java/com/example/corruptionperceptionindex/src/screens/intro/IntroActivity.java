@@ -13,10 +13,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.corruptionperceptionindex.MainActivity;
 import com.example.corruptionperceptionindex.R;
 import com.example.corruptionperceptionindex.src.adapter.IntroViewPagerAdapter;
+import com.example.corruptionperceptionindex.src.fragments.RegisterFragment;
 import com.example.corruptionperceptionindex.src.items.IntroItem;
+import com.example.corruptionperceptionindex.src.register.firstRegister;
 import com.example.corruptionperceptionindex.src.screens.login.LoginActivity;
+import com.example.corruptionperceptionindex.src.screens.main.MainMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +60,16 @@ public class IntroActivity extends AppCompatActivity {
                 setDotColor(position);
                 if (position == mList.size() - 1) {
                     changeNextButtonLayout(true);
-                    nextButton.setOnClickListener(v -> startActivity(new Intent(IntroActivity.this, LoginActivity.class  )));
+//                    nextButton.setOnClickListener(v -> startActivity(new Intent(IntroActivity.this, RegisterFragment.class  )));
+                    nextButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent registerActivity = new Intent(IntroActivity.this, LoginActivity.class);
+                            startActivity(registerActivity);
+                            finish();
+                        }
+                    });
+
                 } else {
                     changeNextButtonLayout(false);
                 }

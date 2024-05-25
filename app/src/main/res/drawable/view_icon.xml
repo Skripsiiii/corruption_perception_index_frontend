@@ -5,6 +5,6 @@
 
     <item android:id="@+id/white_icon_overlay">
         <bitmap android:src="@mipmap/view"
-            android:tint="@android:color/white" />
+            android:tint="@android:color/black" />
     </item>
 </layer-list>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".src.register.aktivasiEmail"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/aktivasiEmail"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="0"
+            android:layout_gravity="center"
+            android:src="@mipmap/aktifasi" />
+
+        <TextView
+            android:id="@+id/nameTxt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Halo John Doe,"
+            android:textSize="24dp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/neutral_500"
+                android:text="Anda tidak akan dapat masuk sampai Anda mengaktivasi akun Anda. Periksa email Anda untuk aktivasi." />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnAktivasi"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/backgroundhome"
+            android:backgroundTint="@color/gray"
+            android:text="Meminta tautan aktivasi baru"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/textCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/neutral_500"
+                android:textAlignment="center"
+                android:text="Kirim ulang dalam"
+                android:layout_marginStart="5dp"
+                android:layout_centerInParent="true"/>
+
+            <TextView
+                android:id="@+id/countdown_timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/neutral_400"
+                android:textAlignment="center"
+                android:text="00:00"
+                android:layout_marginStart="5dp"
+                android:layout_centerInParent="true"/>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/backButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/primary_900"
+            android:text="Kembali ke Halaman Login"/>
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

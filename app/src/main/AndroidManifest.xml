@@ -6,12 +6,82 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/cpinew"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/cpinew"
         android:supportsRtl="true"
         android:theme="@style/Theme.CorruptionPerceptionIndex"
         tools:targetApi="31">
+        <activity
+            android:name=".src.adapter.dataProvinsiFourthAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".src.fragmentsData.dataProvinsiFourthFragment"
+            android:exported="false" />
+        <activity
+            android:name=".src.adapter.dataProvinsiThirdAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".src.fragmentsData.dataProvinsiThirdFragment"
+            android:exported="false" />
+        <activity
+            android:name=".src.adapter.dataProvinsiSecondAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".src.fragmentsData.dataProvinsiSecondFragment"
+            android:exported="false" />
+        <activity
+            android:name=".src.adapter.dataProvinsiAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".src.adapter.QuestionAdapterFirst"
+            android:exported="false" />
+        <activity
+            android:name=".src.screens.kuesioner.dimenssionQuestion"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".src.ViewPager.ViewPagerAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".src.screens.login.ForgotPassActivity"
+            android:exported="false" />
+        <activity
+            android:name=".src.adapter.persepsiAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".src.screens.main.slideMenu"
+            android:exported="false"
+            android:label="@string/title_activity_slide_menu"
+            android:theme="@style/Theme.CorruptionPerceptionIndex.NoActionBar" />
+        <activity
+            android:name=".src.register.aktivasiEmail"
+            android:exported="false" />
+        <activity
+            android:name=".src.screens.main.MainMenu"
+            android:exported="false" />
+        <activity
+            android:name=".src.register.sixthRegister"
+            android:exported="false" />
+        <activity
+            android:name=".src.register.fifthRegister"
+            android:exported="false" />
+        <activity
+            android:name=".src.register.fourthActivity"
+            android:exported="false" />
+        <activity
+            android:name=".src.register.MainActivityfsadsaad"
+            android:exported="false"
+            android:label="@string/title_activity_main_activityfsadsaad"
+            android:theme="@style/Theme.CorruptionPerceptionIndex" />
+        <activity
+            android:name=".src.register.fourthRegister"
+            android:exported="false"
+            android:label="@string/title_activity_fourth_register"
+            android:theme="@style/Theme.CorruptionPerceptionIndex" />
+        <activity
+            android:name=".src.fragments.RegisterFragment"
+            android:exported="false" />
         <activity
             android:name=".src.screens.login.LoginActivity"
             android:exported="false" />
@@ -20,7 +90,8 @@
             android:exported="false" />
         <activity
             android:name=".src.screens.splash.SplashActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Base.Theme.CorruptionPerceptionIndexSplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

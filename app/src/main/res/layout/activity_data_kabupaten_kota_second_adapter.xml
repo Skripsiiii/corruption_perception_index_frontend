@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".src.adapter.dataProvinsiThirdAdapter"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp">
+
+        <LinearLayout
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/dimensiTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:text="Dimensi Persepsi Anda tentang Sistem Integritas Lokal di Lingkungan Kabupaten/Kota"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp">
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:progress="17"
+                    android:max="100"
+                    android:progressDrawable="@drawable/custom_progress_bar" />
+
+                <TextView
+                    android:id="@+id/statusPointText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="16.7/100"
+                    android:textColor="@android:color/black" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/nextButton"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/next"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="5dp"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>
