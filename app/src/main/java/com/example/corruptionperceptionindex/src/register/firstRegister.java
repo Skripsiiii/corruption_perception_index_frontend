@@ -21,6 +21,7 @@ public class firstRegister extends Fragment {
     com.google.android.material.textfield.TextInputEditText namaEditText, emailEditText, passwordEditText, confirmpasswordEditText;
     ImageView unchecked1, checked1, unchecked2, checked2, unchecked3, checked3;
     Button loginButton;
+    ImageView profileLayout;
 
     @Nullable
     @Override
@@ -32,6 +33,7 @@ public class firstRegister extends Fragment {
         emailEditText = fragment.findViewById(R.id.email);
         passwordEditText = fragment.findViewById(R.id.password);
         confirmpasswordEditText = fragment.findViewById(R.id.confirmPassword);
+        profileLayout = fragment.findViewById(R.id.imageLayout);
 
         confirmPasswordLayout = fragment.findViewById(R.id.confirmPasswordLayout);
 
@@ -49,6 +51,8 @@ public class firstRegister extends Fragment {
 
         loginButton = fragment.findViewById(R.id.btn_login);
         loginBtnEnableDisable();
+
+        profileLayout.setImageResource(R.mipmap.profile1);
 
         passwordEditText.addTextChangedListener(new TextWatcher() {
             @Override

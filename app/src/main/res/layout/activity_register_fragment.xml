@@ -1,137 +1,100 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_500"
-    tools:context=".src.fragments.RegisterFragment">
+    android:background="@color/white"
+    tools:context=".src.fragments.RegisterFragment"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Input Akun"
+                    android:textSize="24dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:textColor="@android:color/black"
+                    android:layout_gravity="center"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="24dp"
-            android:text="Corruption Perception Index"
-            android:textColor="@android:color/white"
-            android:textSize="24sp" />
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:tabContentStart="56dp"
+                    app:tabGravity="fill"
+                    android:background="@color/white"
+                    app:tabMode="fixed">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:gravity="center">
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/firstStep"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card"
-                android:layout_width="360dp"
-                android:layout_height="680dp"
-                android:layout_marginHorizontal="15dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="2dp"
-                android:background="@color/white"
-                android:backgroundTint="@color/white">
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/secondStep"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2" />
+
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/thirdStep"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3" />
+
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/forthStep"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4" />
+
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/fifthStep"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5" />
+
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/sixthStep"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="6" />
+
+                </com.google.android.material.tabs.TabLayout>
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Buat Akun Baru"
-                        android:textSize="24dp"
+                        android:text="Sudah Punya Akun ? "
                         android:textStyle="bold"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
                         android:textColor="@android:color/black"
-                        android:layout_gravity="center"/>
+                        />
 
-                    <com.google.android.material.tabs.TabLayout
-                        android:id="@+id/tabLayout"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/LoginButton"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:tabContentStart="56dp"
-                        app:tabGravity="fill"
-                        android:background="@color/white"
-                        app:tabMode="fixed">
-
-                        <com.google.android.material.tabs.TabItem
-                            android:id="@+id/firstStep"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="1" />
-
-                        <com.google.android.material.tabs.TabItem
-                            android:id="@+id/secondStep"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="2" />
-
-                        <com.google.android.material.tabs.TabItem
-                            android:id="@+id/thirdStep"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="3" />
-
-                        <com.google.android.material.tabs.TabItem
-                            android:id="@+id/forthStep"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="4" />
-
-                        <com.google.android.material.tabs.TabItem
-                            android:id="@+id/fifthStep"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="5" />
-
-                        <com.google.android.material.tabs.TabItem
-                            android:id="@+id/sixthStep"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="6" />
-
-                    </com.google.android.material.tabs.TabLayout>
-
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/viewPager"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Sudah Punya Akun ? "
-                            android:textSize="16sp"
-                            android:textColor="@android:color/black"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Masuk Sekarang"
-                            android:textSize="16sp"
-                            android:textColor="@color/blue"
-                            />
-                    </LinearLayout>
-
+                        android:text="Masuk Sekarang"
+                        android:textStyle="bold"
+                        android:textColor="@color/secondary_700"
+                        />
                 </LinearLayout>
 
-            </com.google.android.material.card.MaterialCardView>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-</FrameLayout>
+            </LinearLayout>

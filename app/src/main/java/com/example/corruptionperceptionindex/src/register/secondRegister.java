@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
@@ -18,19 +19,23 @@ import java.util.List;
 
 public class secondRegister extends Fragment {
     Spinner genderSpinner, dateSpiner, educationSpiner, occupationSpinner;
-    Button loginButton;
+    Button saveButton;
+    ImageView profileLayout;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_second_register, container, false);
 
-         genderSpinner = view.findViewById(R.id.genderSpiner);
-         dateSpiner = view.findViewById(R.id.dateSpinner);
-         educationSpiner = view.findViewById(R.id.educationSpiner);
-         occupationSpinner = view.findViewById(R.id.occupationSpinner);
+        genderSpinner = view.findViewById(R.id.genderSpiner);
+        dateSpiner = view.findViewById(R.id.dateSpinner);
+        educationSpiner = view.findViewById(R.id.educationSpiner);
+        occupationSpinner = view.findViewById(R.id.occupationSpinner);
 
-         loginButton = view.findViewById(R.id.btn_login);
+        profileLayout = view.findViewById(R.id.imageLayout);
+        profileLayout.setImageResource(R.mipmap.profile2);
+
+        saveButton = view.findViewById(R.id.btn_login);
 //         loginBtnEnableDisable();
 
         // data dummy buat gender
@@ -73,9 +78,9 @@ public class secondRegister extends Fragment {
                 !dateSpiner.equals("DD/MM/YY") &&
                 !educationSpiner.equals("Pilih Pendidikan") &&
                 !occupationSpinner.equals("Pilih Pekerjaan")) {
-            loginButton.setEnabled(false);
+            saveButton.setEnabled(false);
         } else {
-            loginButton.setEnabled(true);
+            saveButton.setEnabled(true);
         }
 
         ArrayAdapter<String> genderAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, genderList);

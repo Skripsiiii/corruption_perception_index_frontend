@@ -6,12 +6,16 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.example.corruptionperceptionindex.src.register.fifthRegister;
 import com.example.corruptionperceptionindex.src.register.firstRegister;
+import com.example.corruptionperceptionindex.src.register.fourthActivity;
 import com.example.corruptionperceptionindex.src.register.secondRegister;
+import com.example.corruptionperceptionindex.src.register.sixthRegister;
 import com.example.corruptionperceptionindex.src.register.thirdRegister;
 
 public class RegistrationPagerAdapter extends FragmentStateAdapter {
-    private static final int NUM_PAGES = 6; // Number of pages (fragments)
+    private static final int NUM_PAGES = 6;
+    private String[] fragmentTitles = {"Daftar", "Melengkapi Profile", "Melengkapi Profile", "Persepsi Publik", "Persepsi Publik", "Persepsi Publik"};
 
     public RegistrationPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
@@ -29,11 +33,11 @@ public class RegistrationPagerAdapter extends FragmentStateAdapter {
             case 2:
                 return new thirdRegister();
             case 3:
-                return new thirdRegister();
+                return new fourthActivity();
             case 4:
-                return new thirdRegister();
+                return new fifthRegister();
             case 5:
-                return new thirdRegister();
+                return new sixthRegister();
             default:
                 return null;
         }
@@ -42,5 +46,9 @@ public class RegistrationPagerAdapter extends FragmentStateAdapter {
     @Override
     public int getItemCount() {
         return NUM_PAGES; // Return the total number of pages
+    }
+
+    public String getFragmentTitle(int position) {
+        return fragmentTitles[position];
     }
 }

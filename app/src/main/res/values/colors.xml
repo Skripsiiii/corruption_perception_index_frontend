@@ -41,5 +41,19 @@
     <color name="secondary_800">#060c43</color>
     <color name="secondary_900">#030622</color>
 
+    <color name="gradient_50">#FF0000</color>
+    <color name="gradient_100">#FC4700</color>
+    <color name="gradient_200">#F46900</color>
+    <color name="gradient_300">#E68700</color>
+    <color name="gradient_400">#D79F00</color>
+    <color name="gradient_500">#C5B400</color>
+    <color name="gradient_600">#B0C800</color>
+    <color name="gradient_700">#95DB00</color>
+    <color name="gradient_800">#6BEE00</color>
+    <color name="gradient_900">#00FF00</color>
+
+    <color name="red_200">#FCA5A5</color>
+    <color name="green_200">#CEF5E1</color>
+
 
 </resources>

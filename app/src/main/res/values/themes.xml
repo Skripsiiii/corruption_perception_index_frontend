@@ -3,7 +3,7 @@
     <style name="Base.Theme.CorruptionPerceptionIndex" parent="Theme.Material3.DayNight.NoActionBar">
         <!--Primary brand color-->
         <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryVariant">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/white</item>
         <item name="colorOnPrimary">@color/primary</item>
         <!--Secondary brand color-->
         <item name="colorSecondary">@color/secondary</item>
@@ -15,5 +15,34 @@
         <item name="android:windowBackground">@color/white</item>
     </style>
 
+    <style name="Base.Theme.CorruptionPerceptionIndexSplash" parent="Theme.Material3.DayNight.NoActionBar">
+        <!--Primary brand color-->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary</item>
+        <item name="colorOnPrimary">@color/primary</item>
+        <!--Secondary brand color-->
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryVariant">@color/secondary</item>
+        <item name="colorOnSecondary">@color/secondary</item>
+        <!--Status bar color-->
+        <item name="android:statusBarColor">@color/primary</item>
+        <!--Customize your theme here-->
+        <item name="android:windowBackground">@color/primary</item>
+    </style>
+
     <style name="Theme.CorruptionPerceptionIndex" parent="Base.Theme.CorruptionPerceptionIndex" />
+    <style name="Theme.CorruptionPerceptionIndex.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.CorruptionPerceptionIndex.AppBarOverlay"
+        parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.CorruptionPerceptionIndex.PopupOverlay"
+        parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_out</item>
+    </style>
+
 </resources>
