@@ -38,7 +38,6 @@ public class dimenssionFirst extends Fragment {
         questions.add(new Question("Question 6"));
         questions.add(new Question("Question 7"));
         questions.add(new Question("Question 9"));
-        // Add more questions as needed
 
         adapter = new QuestionAdapterFirst(questions);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

@@ -68,9 +68,9 @@
                         android:layout_width="195dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/button_radius"
+                        android:backgroundTint="@color/white"
                         android:text="Isi Kuesioner Sekarang"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 
@@ -241,7 +241,7 @@
                                 android:layout_width="155dp"
                                 android:layout_height="40dp"
                                 android:layout_marginStart="90dp"
-                                android:background="@drawable/backgroungncorruption"
+                                android:background="@drawable/backgroundhome"
                                 android:text="Lihat Detail"
                                 android:textColor="@color/white" />
 
@@ -319,7 +319,7 @@
                         android:layout_gravity="center_vertical">
 
                         <Button
-                            android:id="@+id/btn_login"
+                            android:id="@+id/mapingButton"
                             android:layout_width="155dp"
                             android:layout_height="40dp"
                             android:layout_marginStart="90dp"

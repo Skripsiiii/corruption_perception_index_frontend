@@ -64,7 +64,7 @@ public class IntroActivity extends AppCompatActivity {
                     nextButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent registerActivity = new Intent(IntroActivity.this, LoginActivity.class);
+                            Intent registerActivity = new Intent(IntroActivity.this, RegisterFragment.class);
                             startActivity(registerActivity);
                             finish();
                         }
