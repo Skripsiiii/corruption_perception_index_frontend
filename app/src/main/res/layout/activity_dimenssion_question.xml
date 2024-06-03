@@ -133,7 +133,7 @@
     </FrameLayout>
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_next"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginHorizontal="20dp"
@@ -141,6 +141,7 @@
         android:background="@drawable/backgroundhome"
         android:backgroundTint="@color/gray"
         android:text="Berikutnya"
+        android:layout_marginBottom="5dp"
         android:textColor="@color/white" />
 
 

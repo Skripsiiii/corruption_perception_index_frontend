@@ -1,6 +1,8 @@
 package com.example.corruptionperceptionindex.src.fragments;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -12,10 +14,24 @@ import com.example.corruptionperceptionindex.R;
 import com.example.corruptionperceptionindex.src.fragmentsData.dataProvinsiFirstFragment;
 import com.example.corruptionperceptionindex.src.fragmentsData.dataProvinsiSecondFragment;
 
+import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class dataFragmentBott extends Fragment {
 
     private ImageView nextButton, prevButton;
-    private TextView countPage;
+    private TextView countPage, dashboardTv;
     private int currentPage = 1;
     private boolean isSecondFragmentActive = false;
 
@@ -26,6 +42,7 @@ public class dataFragmentBott extends Fragment {
         nextButton = view.findViewById(R.id.nextButton);
         prevButton = view.findViewById(R.id.prevButton);
         countPage = view.findViewById(R.id.countPage);
+        dashboardTv = view.findViewById(R.id.calculateDashboard);
 
         countPage.setText(String.valueOf(currentPage));
         loadProvinsiFragment(currentPage);
@@ -52,7 +69,94 @@ public class dataFragmentBott extends Fragment {
             }
         });
 
+        try {
+            Map<Integer, String> regionMap = loadkabupatenkotaCode();
+            Map<Integer, String> profMap = loadprovinsiCode();
+            List<Double> questionnaireResults = loadQuestionnaireData();
+            double[] confidenceInterval = calculateConfidenceInterval(questionnaireResults);
+
+            String result = "Confidence Interval for p_1: [" + confidenceInterval[0] + ", " + confidenceInterval[1] + "]";
+            dashboardTv.setText(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+            dashboardTv.setText("Error: " + e.getMessage());
+        }
+
         return view;
+    }
+
+
+    @NonNull
+    private Map<Integer, String> loadkabupatenkotaCode() throws Exception {
+        Map<Integer, String> regionMap = new HashMap<>();
+        InputStream inputStream = getResources().openRawResource(R.raw.dummycpi);
+        Workbook workbook = new XSSFWorkbook(inputStream);
+        Sheet sheet = workbook.getSheet("kode_kabupatenkota");
+
+        for (Row row : sheet) {
+            if (row.getRowNum() == 0) { // Skip header
+                continue;
+            }
+            int code = (int) row.getCell(0).getNumericCellValue();
+            String name = row.getCell(1).getStringCellValue();
+            regionMap.put(code, name);
+        }
+
+        workbook.close();
+        return regionMap;
+    }
+
+    @NonNull
+    private Map<Integer, String> loadprovinsiCode() throws Exception {
+        Map<Integer, String> profMap = new HashMap<>();
+        InputStream inputStream = getResources().openRawResource(R.raw.dummycpi);
+        Workbook workbook = new XSSFWorkbook(inputStream);
+        Sheet sheet = workbook.getSheet("kode_provinsi");
+
+        for (Row row : sheet) {
+            if (row.getRowNum() == 0) { // Skip header
+                continue;
+            }
+            int code = (int) row.getCell(0).getNumericCellValue();
+            String name = row.getCell(1).getStringCellValue();
+            profMap.put(code, name);
+        }
+
+        workbook.close();
+        return profMap;
+    }
+
+    @NonNull
+    private List<Double> loadQuestionnaireData() throws Exception {
+        List<Double> results = new ArrayList<>();
+        InputStream inputStream = getResources().openRawResource(R.raw.dummycpi);
+        Workbook workbook = new XSSFWorkbook(inputStream);
+        Sheet sheet = workbook.getSheet("dummy_data");
+
+        for (Row row : sheet) {
+            if (row.getRowNum() == 0) { // Skip header
+                continue;
+            }
+            double p1Score = row.getCell(3).getNumericCellValue(); // Anggap p_1 berada di kolom ke-4 (indeks 3)
+            results.add(p1Score);
+        }
+
+        workbook.close();
+        return results;
+    }
+
+    private double[] calculateConfidenceInterval(List<Double> data) {
+        DescriptiveStatistics stats = new DescriptiveStatistics();
+        for (double num : data) {
+            stats.addValue(num);
+        }
+
+        double mean = stats.getMean();
+        double stdDev = stats.getStandardDeviation();
+        double confidenceLevel = 1.96; // 95% confidence interval
+        double marginOfError = confidenceLevel * stdDev / Math.sqrt(data.size());
+
+        return new double[]{mean - marginOfError, mean + marginOfError};
     }
 
 

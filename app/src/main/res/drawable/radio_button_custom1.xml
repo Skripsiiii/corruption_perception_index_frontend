@@ -6,8 +6,8 @@
             <solid android:color="@color/gradient_50" />
             <stroke
                 android:width="2dp"
-                android:color="@android:color/white" />
-            <size android:width="400dp" android:height="400dp" />
+                android:color="@color/gradient_50" />
+            <size android:width="30dp" android:height="30dp" />
         </shape>
     </item>
     <!-- Default state -->

@@ -82,6 +82,12 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         getSupportActionBar().setTitle("");
     }
 
+    public void selectBottomNavItem(int itemId) {
+        if (bottomNavigationView != null) {
+            bottomNavigationView.setSelectedItemId(itemId);
+        }
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();

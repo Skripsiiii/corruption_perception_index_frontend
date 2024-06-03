@@ -5,7 +5,7 @@
     <item
         android:id="@+id/mainBottom"
         android:title="Home"
-        android:icon="@mipmap/mainnavbott"/>
+        android:icon="@mipmap/homenew"/>
 
     <item
         android:id="@+id/kuesionerBottom"
@@ -20,6 +20,6 @@
     <item
         android:id="@+id/dataBottom"
         android:title="Data"
-        android:icon="@mipmap/datanavbott" />
+        android:icon="@mipmap/datanew" />
 
 </menu>
