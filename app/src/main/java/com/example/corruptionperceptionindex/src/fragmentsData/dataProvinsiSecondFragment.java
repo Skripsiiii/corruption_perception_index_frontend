@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.corruptionperceptionindex.R;
 import com.example.corruptionperceptionindex.src.adapter.dataProvinsiSecondAdapter;
 import com.example.corruptionperceptionindex.src.connection.FetchCityDataTask;
+import com.example.corruptionperceptionindex.src.connection.Koneksi;
 import com.example.corruptionperceptionindex.src.model.CityData;
 
 import java.util.List;
@@ -92,7 +93,8 @@ public class dataProvinsiSecondFragment extends Fragment {
     }
 
     private void fetchCityData(int provinceId) {
-        String cityDataUrl = "https://6e49-2404-8000-1003-61d1-39cf-8c86-8a14-b8e8.ngrok-free.app/api/cityData/" + provinceId;
+//        String cityDataUrl = "https://6e49-2404-8000-1003-61d1-39cf-8c86-8a14-b8e8.ngrok-free.app/api/cityData/" + provinceId;
+        String cityDataUrl = new Koneksi().connKotaDataDimension() + provinceId;
 
         new FetchCityDataTask(cityData -> {
             dataProvinsiSecondAdapter adapter = new dataProvinsiSecondAdapter(cityData, kabupatenKota -> {

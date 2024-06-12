@@ -32,8 +32,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class dataProvinsiFourthFragment extends Fragment {
-    TextView namaProvinsiTextView, namaKabupatenKotaTextView, dimensiTextView, statusWarnaTextProvinsi, statusWarnaTextKabupatenKota, statusPointTextProvinsi, statusPointTextKabupatenKota;
-    ProgressBar progressBarProvinsi, progressBarKabupatenKota;
+    TextView namaProvinsiTextView, namaKabupatenKotaTextView, dimensiTextView, statusWarnaTextProvinsi, statusWarnaTextKabupatenKota, statusPointTextProvinsi, statusPointTextKabupatenKota, statusDimensi;
+    ProgressBar progressBarProvinsi, progressBarKabupatenKota, progressBardimensi;
     View statusBarProvinsi, statusBarKabupatenKota;
     private RecyclerView recyclerView;
 
@@ -53,6 +53,8 @@ public class dataProvinsiFourthFragment extends Fragment {
         statusPointTextKabupatenKota = view.findViewById(R.id.statusPointTextkabupatenkota);
         progressBarKabupatenKota = view.findViewById(R.id.progressBarkabupatenkota);
         statusBarKabupatenKota = view.findViewById(R.id.statusBarkabupatenkota);
+        statusDimensi = view.findViewById(R.id.statusdimensi);
+        progressBardimensi = view.findViewById(R.id.progressBardimensi);
 
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -63,12 +65,16 @@ public class dataProvinsiFourthFragment extends Fragment {
             String kabupatenKota = args.getString("kabupatenKota");
             String dimensi = args.getString("selectedDimensi");
             int dimensionId = args.getInt("dimensionId");
+            double indexResultDimensi = args.getDouble("indexResultDimensi");
             int indexResultProvinsi = args.getInt("indexResultProvinsi");
             int indexResultKabupatenKota = args.getInt("indexResultKabupatenKota");
 
             namaProvinsiTextView.setText(provinsiName);
             namaKabupatenKotaTextView.setText(kabupatenKota);
             dimensiTextView.setText(dimensi);
+            statusDimensi.setText(indexResultDimensi + "/100");
+            progressBardimensi.setProgress((int) indexResultDimensi);
+
             statusPointTextProvinsi.setText(indexResultProvinsi + "/100");
             progressBarProvinsi.setProgress(indexResultProvinsi);
             statusPointTextKabupatenKota.setText(indexResultKabupatenKota + "/100");
@@ -76,6 +82,8 @@ public class dataProvinsiFourthFragment extends Fragment {
 
             setStatus(indexResultProvinsi, statusBarProvinsi, statusWarnaTextProvinsi, progressBarProvinsi, statusPointTextProvinsi, true);
             setStatus(indexResultKabupatenKota, statusBarKabupatenKota, statusWarnaTextKabupatenKota, progressBarKabupatenKota, statusPointTextKabupatenKota, false);
+
+            setStatus(indexResultDimensi, progressBardimensi);
 
             fetchIndicatorData(dimensionId);
         }
@@ -134,6 +142,34 @@ public class dataProvinsiFourthFragment extends Fragment {
             dataProvinsiFourthAdapter adapter = new dataProvinsiFourthAdapter(indicatorDataList);
             recyclerView.setAdapter(adapter);
         }
+    }
+
+    private void setStatus(double indexResult, ProgressBar progressBar) {
+        int color;
+        String statusString;
+        if (indexResult <= 20) {
+            color = 0xFFe76f51; // Red
+            statusString = "Sangat Korup";
+        } else if (indexResult <= 40) {
+            color = 0xFFf4a261; // Orange
+            statusString = "Korup";
+        } else if (indexResult <= 60) {
+            color = 0xFFffd966; // Yellow
+            statusString = "Netral";
+        } else if (indexResult <= 80) {
+            color = 0xFF90c8ac; // Light Green
+            statusString = "Aman";
+        } else {
+            color = 0xFF69b3a2; // Green
+            statusString = "Sangat Aman";
+        }
+
+        // Customize ProgressBar color
+        LayerDrawable progressDrawable = (LayerDrawable) progressBar.getProgressDrawable();
+        Drawable progressLayer = progressDrawable.findDrawableByLayerId(android.R.id.progress);
+        progressLayer.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+
+
     }
 
     private void setStatus(int indexResult, View statusBar, TextView statusWarnaText, ProgressBar progressBar, TextView statusPointText, boolean changeTextColor) {
