@@ -20,6 +20,7 @@ import com.example.corruptionperceptionindex.R;
 import com.example.corruptionperceptionindex.src.adapter.dataProvinsiThirdAdapter;
 import com.example.corruptionperceptionindex.src.connection.FetchDimensionDataTask;
 import com.example.corruptionperceptionindex.src.model.DimensionData;
+import com.example.corruptionperceptionindex.src.connection.Koneksi;
 
 import java.util.List;
 
@@ -65,10 +66,10 @@ public class dataProvinsiThirdFragment extends Fragment {
             progressBarKabupatenKota.setProgress(indexResultKabupatenKota);
 
             // Setting up the province status
-            setStatus(indexResult, statusBarProvinsi, statusWarnaTextProvinsi, progressBarProvinsi);
+            setStatus(indexResult, statusBarProvinsi, statusWarnaTextProvinsi, progressBarProvinsi, statusPointTextProvinsi, true);
 
             // Setting up the kabupaten/kota status
-            setStatus(indexResultKabupatenKota, statusBarKabupatenKota, statusWarnaTextKabupatenKota, progressBarKabupatenKota);
+            setStatus(indexResultKabupatenKota, statusBarKabupatenKota, statusWarnaTextKabupatenKota, progressBarKabupatenKota, statusPointTextKabupatenKota, false);
         }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -78,15 +79,32 @@ public class dataProvinsiThirdFragment extends Fragment {
     }
 
     private void fetchDimensionData(int cityId) {
-        String dimensionDataUrl = "https://6e49-2404-8000-1003-61d1-39cf-8c86-8a14-b8e8.ngrok-free.app/api/dimensionCityData/" + cityId;
+        String dimensionDataUrl = new Koneksi().connDataDimension() + cityId;
 
-        new FetchDimensionDataTask(dimensionData -> {
-            dataProvinsiThirdAdapter adapter = new dataProvinsiThirdAdapter(dimensionData);
+        new FetchDimensionDataTask(dimensionDataList -> {
+            dataProvinsiThirdAdapter adapter = new dataProvinsiThirdAdapter(dimensionDataList);
+            adapter.setOnNextButtonClickListener(selectedDimensionData -> {
+                dataProvinsiFourthFragment fourthFragment = new dataProvinsiFourthFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("provinsiName", provinsiName);
+                bundle.putString("kabupatenKota", kabupatenKota);
+                bundle.putInt("dimensionId", selectedDimensionData.getId());
+                bundle.putString("selectedDimensi", selectedDimensionData.getName());
+                bundle.putInt("indexResultProvinsi", indexResult);
+                bundle.putInt("indexResultKabupatenKota", indexResultKabupatenKota);
+                fourthFragment.setArguments(bundle);
+
+                getParentFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, fourthFragment)
+                        .addToBackStack(null)
+                        .commit();
+            });
             recyclerView.setAdapter(adapter);
         }).execute(dimensionDataUrl);
     }
 
-    private void setStatus(int indexResult, View statusBar, TextView statusWarnaText, ProgressBar progressBar) {
+    private void setStatus(int indexResult, View statusBar, TextView statusWarnaText, ProgressBar progressBar, TextView statusPointText, boolean changeTextColor) {
         int color;
         String statusText;
         if (indexResult <= 20) {
@@ -114,5 +132,13 @@ public class dataProvinsiThirdFragment extends Fragment {
         LayerDrawable progressDrawable = (LayerDrawable) progressBar.getProgressDrawable();
         Drawable progressLayer = progressDrawable.findDrawableByLayerId(android.R.id.progress);
         progressLayer.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+
+        // Update status point text color if changeTextColor is true
+        if (changeTextColor) {
+            statusPointText.setTextColor(color);
+        } else {
+            statusPointText.setTextColor(getResources().getColor(android.R.color.black));
+            statusPointTextProvinsi.setTextColor(getResources().getColor(android.R.color.black));
+        }
     }
 }

@@ -29,7 +29,7 @@ public class dataProvinsiThirdAdapter extends RecyclerView.Adapter<dataProvinsiT
     }
 
     public interface OnNextButtonClickListener {
-        void onNextButtonClick();
+        void onNextButtonClick(DimensionData dimensionData);
     }
 
     public void setOnNextButtonClickListener(OnNextButtonClickListener listener) {
@@ -69,10 +69,6 @@ public class dataProvinsiThirdAdapter extends RecyclerView.Adapter<dataProvinsiT
             statusText = "Sangat Aman";
         }
 
-//        holder.statusBar.setBackgroundColor(color);
-//        holder.statusWarnaText.setBackgroundColor(color);
-//        holder.statusWarnaText.setText(statusText);
-
         // Customize ProgressBar color
         LayerDrawable progressDrawable = (LayerDrawable) holder.progressBar.getProgressDrawable();
         Drawable progressLayer = progressDrawable.findDrawableByLayerId(android.R.id.progress);
@@ -83,7 +79,7 @@ public class dataProvinsiThirdAdapter extends RecyclerView.Adapter<dataProvinsiT
             public void onClick(View v) {
                 selectedDimensionData = dimensionData;
                 if (nextButtonClickListener != null) {
-                    nextButtonClickListener.onNextButtonClick();
+                    nextButtonClickListener.onNextButtonClick(dimensionData);
                 }
             }
         });
