@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +22,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.BufferedReader;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -47,44 +47,38 @@ public class dataFragmentBott extends Fragment {
         countPage.setText(String.valueOf(currentPage));
         loadProvinsiFragment(currentPage);
 
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!isSecondFragmentActive && currentPage < 4) {
-                    currentPage++;
-                    countPage.setText(String.valueOf(currentPage));
-                    loadProvinsiFragment(currentPage);
-                }
+        nextButton.setOnClickListener(v -> {
+            if (!isSecondFragmentActive && currentPage < 4) {
+                currentPage++;
+                countPage.setText(String.valueOf(currentPage));
+                loadProvinsiFragment(currentPage);
             }
         });
 
-        prevButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!isSecondFragmentActive && currentPage > 1) {
-                    currentPage--;
-                    countPage.setText(String.valueOf(currentPage));
-                    loadProvinsiFragment(currentPage);
-                }
+        prevButton.setOnClickListener(v -> {
+            if (!isSecondFragmentActive && currentPage > 1) {
+                currentPage--;
+                countPage.setText(String.valueOf(currentPage));
+                loadProvinsiFragment(currentPage);
             }
         });
 
-        try {
-            Map<Integer, String> regionMap = loadkabupatenkotaCode();
-            Map<Integer, String> profMap = loadprovinsiCode();
-            List<Double> questionnaireResults = loadQuestionnaireData();
-            double[] confidenceInterval = calculateConfidenceInterval(questionnaireResults);
-
-            String result = "Confidence Interval for p_1: [" + confidenceInterval[0] + ", " + confidenceInterval[1] + "]";
-            dashboardTv.setText(result);
-        } catch (Exception e) {
-            e.printStackTrace();
-            dashboardTv.setText("Error: " + e.getMessage());
-        }
+//        try {
+//            Map<Integer, String> regionMap = loadkabupatenkotaCode();
+//            Map<Integer, String> profMap = loadprovinsiCode();
+//            List<Double> questionnaireResults = loadQuestionnaireData();
+//            double[] confidenceInterval = calculateConfidenceInterval(questionnaireResults);
+//
+//            String result = "Confidence Interval for p_1: [" + confidenceInterval[0] + ", " + confidenceInterval[1] + "]";
+//            dashboardTv.setText(result);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            dashboardTv.setText("Error: " + e.getMessage());
+//            Log.e("DataFragmentBott", "Error loading data", e);
+//        }
 
         return view;
     }
-
 
     @NonNull
     private Map<Integer, String> loadkabupatenkotaCode() throws Exception {
@@ -92,6 +86,10 @@ public class dataFragmentBott extends Fragment {
         InputStream inputStream = getResources().openRawResource(R.raw.dummycpi);
         Workbook workbook = new XSSFWorkbook(inputStream);
         Sheet sheet = workbook.getSheet("kode_kabupatenkota");
+
+        if (sheet == null) {
+            throw new Exception("Sheet 'kode_kabupatenkota' not found");
+        }
 
         for (Row row : sheet) {
             if (row.getRowNum() == 0) { // Skip header
@@ -113,6 +111,10 @@ public class dataFragmentBott extends Fragment {
         Workbook workbook = new XSSFWorkbook(inputStream);
         Sheet sheet = workbook.getSheet("kode_provinsi");
 
+        if (sheet == null) {
+            throw new Exception("Sheet 'kode_provinsi' not found");
+        }
+
         for (Row row : sheet) {
             if (row.getRowNum() == 0) { // Skip header
                 continue;
@@ -132,6 +134,10 @@ public class dataFragmentBott extends Fragment {
         InputStream inputStream = getResources().openRawResource(R.raw.dummycpi);
         Workbook workbook = new XSSFWorkbook(inputStream);
         Sheet sheet = workbook.getSheet("dummy_data");
+
+        if (sheet == null) {
+            throw new Exception("Sheet 'dummy_data' not found");
+        }
 
         for (Row row : sheet) {
             if (row.getRowNum() == 0) { // Skip header
@@ -159,8 +165,6 @@ public class dataFragmentBott extends Fragment {
         return new double[]{mean - marginOfError, mean + marginOfError};
     }
 
-
-
     private void loadProvinsiFragment(int pageNumber) {
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         dataProvinsiFirstFragment firstFragment = new dataProvinsiFirstFragment();
@@ -168,32 +172,13 @@ public class dataFragmentBott extends Fragment {
         bundle.putInt("pageNumber", pageNumber);
         firstFragment.setArguments(bundle);
 
-        firstFragment.setOnProvinsiSelectedListener(new dataProvinsiFirstFragment.OnProvinsiSelectedListener() {
-            @Override
-            public void onProvinsiSelected(String provinsi) {
-                loadSecondFragment(provinsi);
-            }
-        });
+        firstFragment.setOnProvinsiSelectedListener(provinsi -> loadSecondFragment(provinsi));
 
         transaction.replace(R.id.fragment_container, firstFragment);
         transaction.commit();
         isSecondFragmentActive = false;
         updateButtonsState();
     }
-
-//    private void loadSecondFragment(String provinsi) {
-//        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-//        dataProvinsiSecondFragment secondFragment = new dataProvinsiSecondFragment();
-//        Bundle args = new Bundle();
-//        args.putString("provinsiName", provinsi);
-//        secondFragment.setArguments(args);
-//
-//        transaction.replace(R.id.fragment_container, secondFragment);
-//        transaction.addToBackStack(null);
-//        transaction.commit();
-//        isSecondFragmentActive = true;
-//        updateButtonsState();
-//    }
 
     private void loadSecondFragment(String provinsi) {
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
@@ -209,7 +194,6 @@ public class dataFragmentBott extends Fragment {
         updateButtonsState();
     }
 
-
     private void updateButtonsState() {
         if (isSecondFragmentActive) {
             nextButton.setEnabled(false);
@@ -219,5 +203,4 @@ public class dataFragmentBott extends Fragment {
             prevButton.setEnabled(currentPage > 1);
         }
     }
-
 }

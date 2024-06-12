@@ -9,14 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.corruptionperceptionindex.R;
+import com.example.corruptionperceptionindex.src.model.IndicatorData;
 
 import java.util.List;
 
 public class dataProvinsiFourthAdapter extends RecyclerView.Adapter<dataProvinsiFourthAdapter.ViewHolder> {
 
-    private List<String> indikatorList;
+    private List<IndicatorData> indikatorList;
 
-    public dataProvinsiFourthAdapter(List<String> indikatorList) {
+    public dataProvinsiFourthAdapter(List<IndicatorData> indikatorList) {
         this.indikatorList = indikatorList;
     }
 
@@ -29,12 +30,9 @@ public class dataProvinsiFourthAdapter extends RecyclerView.Adapter<dataProvinsi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String indikator = indikatorList.get(position);
-        holder.indikatorTextView.setText(indikator);
-
-        holder.indikatorTextView.setText(indikator);
-//        holder.statusTextView.setText(data.getStatus());
-//        holder.cpiTextView.setText(data.getCpi());
+        IndicatorData indikator = indikatorList.get(position);
+        holder.indikatorTextView.setText(indikator.getName());
+        holder.statusTextView.setText(String.valueOf(indikator.getIndexResult()));
     }
 
     @Override
@@ -43,13 +41,12 @@ public class dataProvinsiFourthAdapter extends RecyclerView.Adapter<dataProvinsi
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView indikatorTextView, statusTextView, cpiTextView;
+        TextView indikatorTextView, statusTextView;
 
         ViewHolder(View itemView) {
             super(itemView);
             indikatorTextView = itemView.findViewById(R.id.dimensiTxt);
             statusTextView = itemView.findViewById(R.id.statusText);
-            cpiTextView = itemView.findViewById(R.id.statusCPI);
         }
     }
 }

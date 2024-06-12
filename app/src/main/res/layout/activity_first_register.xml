@@ -33,7 +33,7 @@
             android:id="@+id/namaLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:hint="Nama Kamu"
             app:endIconMode="clear_text">
@@ -57,7 +57,7 @@
             android:id="@+id/emailLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:hint="contoh@gmail.com"
             app:endIconMode="clear_text">
@@ -81,7 +81,7 @@
             android:id="@+id/passwordLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:hint="Password"
             app:endIconMode="password_toggle">
@@ -105,7 +105,7 @@
             android:id="@+id/confirmPasswordLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:hint="Konfirmasi Password"
             app:endIconMode="password_toggle">

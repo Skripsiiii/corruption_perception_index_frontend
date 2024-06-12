@@ -16,13 +16,6 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
-        android:text="Daerah yang akan dinilai:" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -69,6 +62,7 @@
 
 
     <TextView
+        android:id="@+id/question2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
@@ -100,6 +94,7 @@
     </FrameLayout>
 
     <TextView
+        android:id="@+id/question3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"

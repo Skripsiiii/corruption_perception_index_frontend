@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".src.fragmentsData.dataProvinsiThirdFragment"
+    tools:context=".src.fragmentsData.dataProvinsiFourthFragment"
     android:orientation="vertical"
     android:layout_marginHorizontal="10dp">
 
@@ -107,13 +107,13 @@
             </FrameLayout>
         </LinearLayout>
 
-<!--        <ImageView-->
-<!--            android:id="@+id/nextButton"-->
-<!--            android:layout_width="25dp"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:src="@mipmap/next"-->
-<!--            android:layout_gravity="center_vertical"-->
-<!--            android:layout_marginStart="5dp"/>-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/nextButton"-->
+        <!--            android:layout_width="25dp"-->
+        <!--            android:layout_height="30dp"-->
+        <!--            android:src="@mipmap/next"-->
+        <!--            android:layout_gravity="center_vertical"-->
+        <!--            android:layout_marginStart="5dp"/>-->
 
     </LinearLayout>
 
@@ -228,13 +228,13 @@
             </FrameLayout>
         </LinearLayout>
 
-<!--        <ImageView-->
-<!--            android:id="@+id/nextButtonkabupatenkota"-->
-<!--            android:layout_width="25dp"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:src="@mipmap/next"-->
-<!--            android:layout_gravity="center_vertical"-->
-<!--            android:layout_marginStart="5dp"/>-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/nextButtonkabupatenkota"-->
+        <!--            android:layout_width="25dp"-->
+        <!--            android:layout_height="30dp"-->
+        <!--            android:src="@mipmap/next"-->
+        <!--            android:layout_gravity="center_vertical"-->
+        <!--            android:layout_marginStart="5dp"/>-->
 
     </LinearLayout>
 
@@ -290,13 +290,13 @@
             </FrameLayout>
         </LinearLayout>
 
-<!--        <ImageView-->
-<!--            android:id="@+id/nextButton"-->
-<!--            android:layout_width="25dp"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:src="@mipmap/next"-->
-<!--            android:layout_gravity="center_vertical"-->
-<!--            android:layout_marginStart="5dp"/>-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/nextButton"-->
+        <!--            android:layout_width="25dp"-->
+        <!--            android:layout_height="30dp"-->
+        <!--            android:src="@mipmap/next"-->
+        <!--            android:layout_gravity="center_vertical"-->
+        <!--            android:layout_marginStart="5dp"/>-->
 
 
     </LinearLayout>

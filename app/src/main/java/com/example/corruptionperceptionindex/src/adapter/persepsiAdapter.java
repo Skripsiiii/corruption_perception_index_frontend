@@ -6,17 +6,21 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.corruptionperceptionindex.R;
 
 public class persepsiAdapter extends RecyclerView.Adapter<persepsiAdapter.PersepsiViewHolder> {
 
     private String[] questions;
+    private String[] responses;
     private String[] spinner = {"Tidak Efektif", "Efektif"};
 
-    public persepsiAdapter(String[] questions) {
+    public persepsiAdapter(String[] questions, String[] responses) {
         this.questions = questions;
+        this.responses = responses;
     }
 
     @NonNull
@@ -33,6 +37,10 @@ public class persepsiAdapter extends RecyclerView.Adapter<persepsiAdapter.Persep
                 android.R.layout.simple_spinner_item, spinner);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         holder.questionSpinner.setAdapter(adapter);
+        if (!responses[position].isEmpty()) {
+            int spinnerPosition = adapter.getPosition(responses[position]);
+            holder.questionSpinner.setSelection(spinnerPosition);
+        }
     }
 
     @Override

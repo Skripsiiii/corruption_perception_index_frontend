@@ -60,16 +60,17 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pilih Daerah Untuk Mengisi Kuesioner "
+            android:layout_marginHorizontal="20dp"
             android:textStyle="bold"
             android:textSize="16dp"
             android:textColor="@color/black"/>
@@ -104,35 +105,67 @@
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/idaa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pilih Daerah"
-                android:textStyle="bold"
-                android:textSize="14dp"
-                android:textColor="@color/black"/>
-        </LinearLayout>
+            android:text="Provinsi" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/daerahLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:hint="Masukan daerah">
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/spinner_border">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/daerah"
+            <Spinner
+                android:id="@+id/provinsiSpiner"
                 android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/white"
+                android:popupBackground="@color/white"
+                android:background="@android:color/transparent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_gravity="end|center_vertical"
+                android:src="@drawable/ic_dropdown_arrow" />
+
+        </FrameLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Kabupaten/Kota" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/spinner_border">
+
+            <Spinner
+                android:id="@+id/kabupatenkotaSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/white"
+                android:popupBackground="@color/white"
+                android:background="@android:color/transparent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:src="@drawable/ic_dropdown_arrow" />
+
+        </FrameLayout>
 
     </LinearLayout>
 

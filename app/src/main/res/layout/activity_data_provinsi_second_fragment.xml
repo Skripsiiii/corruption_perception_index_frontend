@@ -107,14 +107,6 @@
             </FrameLayout>
         </LinearLayout>
 
-<!--        <ImageView-->
-<!--            android:id="@+id/nextButton"-->
-<!--            android:layout_width="25dp"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:src="@mipmap/next"-->
-<!--            android:layout_gravity="center_vertical"-->
-<!--            android:layout_marginStart="5dp"/>-->
-
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

@@ -1,17 +1,14 @@
 package com.example.corruptionperceptionindex.src.register;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.corruptionperceptionindex.R;
 import com.example.corruptionperceptionindex.src.screens.login.LoginActivity;
@@ -29,7 +26,7 @@ public class aktivasiEmail extends AppCompatActivity {
         setContentView(R.layout.activity_aktivasi_email);
 
         nameGreetings = findViewById(R.id.nameTxt);
-        textCount= findViewById(R.id.textCount);
+        textCount = findViewById(R.id.textCount);
         backButton = findViewById(R.id.backButton);
         countdown_timer = findViewById(R.id.countdown_timer);
         requestButton = findViewById(R.id.btnAktivasi);
@@ -37,13 +34,14 @@ public class aktivasiEmail extends AppCompatActivity {
         textCount.setVisibility(View.GONE);
         countdown_timer.setVisibility(View.GONE);
 
+        // Receive data from Intent
+        String userName = getIntent().getStringExtra("userName");
+        nameGreetings.setText("Halo " + userName);
+
         requestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textCount.setVisibility(View.VISIBLE);
-                countdown_timer.setVisibility(View.VISIBLE);
-                requestButton.setEnabled(false);
-                startTime();
+                openGmailApp();
             }
         });
 
@@ -57,8 +55,19 @@ public class aktivasiEmail extends AppCompatActivity {
         });
     }
 
-    public Void startTime(){
+    private void openGmailApp() {
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "email@example.com", null));
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Body of the email");
 
+        if (emailIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(emailIntent);
+        } else {
+            // Handle case where no email app is available
+        }
+    }
+
+    public Void startTime() {
         timer = new CountDownTimer(60000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -75,5 +84,4 @@ public class aktivasiEmail extends AppCompatActivity {
 
         return null;
     }
-
 }

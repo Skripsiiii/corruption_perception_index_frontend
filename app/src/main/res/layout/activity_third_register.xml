@@ -17,6 +17,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/idaa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
@@ -91,22 +92,22 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="10dp"
-        app:endIconMode="clear_text"
-        android:background="@drawable/spinner_border">
+        app:endIconMode="clear_text">
 
-        <Spinner
-            android:id="@+id/kecamatanSpiner"
+        <EditText
+            android:id="@+id/kacamatanEditText"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:backgroundTint="@color/white"
-            android:popupBackground="@color/white"
-            android:background="@android:color/transparent" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|center_vertical"
-            android:src="@drawable/ic_dropdown_arrow" />
+            android:layout_weight="0"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_background"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:hint="Masukan Kacamatan"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:textColorHint="@color/black"
+            android:textSize="12dp" />
 
     </FrameLayout>
 
@@ -122,24 +123,32 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="10dp"
-        app:endIconMode="clear_text"
-        android:background="@drawable/spinner_border">
+        app:endIconMode="clear_text">
 
-        <Spinner
-            android:id="@+id/kelurahandesaSpinner"
+        <EditText
+            android:id="@+id/kelurahandesaEditText"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:backgroundTint="@color/white"
-            android:popupBackground="@color/white"
-            android:background="@android:color/transparent" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|center_vertical"
-            android:src="@drawable/ic_dropdown_arrow" />
+            android:layout_weight="0"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_background"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:hint="Masukan Kelurahan/Desa"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:textColorHint="@color/black"
+            android:textSize="12dp" />
 
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/userid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Userid" />
 
     <View
         android:layout_width="match_parent"
