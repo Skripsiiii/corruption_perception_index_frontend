@@ -67,7 +67,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/backgroundhome"
             android:backgroundTint="@color/gray"
-            android:text="Meminta tautan aktivasi baru"
+            android:text="Buka Gmail"
             android:textColor="@color/white" />
 
         <LinearLayout
@@ -106,7 +106,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:textColor="@color/primary_900"
-            android:text="Kembali ke Halaman Login"/>
+            android:text="Buka Halaman Login"/>
 
     </LinearLayout>
 

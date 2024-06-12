@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!-- res/layout/activity_data_provinsi_adapter.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -69,8 +69,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-
         </LinearLayout>
 
         <LinearLayout
@@ -96,7 +94,7 @@
                     android:layout_height="match_parent"
                     android:progress="17"
                     android:max="100"
-                    android:progressDrawable="@drawable/custom_progress_bar" />
+                    android:progressDrawable="@drawable/progress_bar_custom" />
 
                 <TextView
                     android:id="@+id/statusPointText"
@@ -116,7 +114,5 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="5dp"/>
 
-
     </LinearLayout>
-
 </LinearLayout>

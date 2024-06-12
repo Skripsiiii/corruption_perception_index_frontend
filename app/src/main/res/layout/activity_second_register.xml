@@ -23,29 +23,36 @@
         android:layout_marginTop="20dp"
         android:text="Jenis Kelamin" />
 
-    <FrameLayout
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/jenisklaminLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp"
-        app:endIconMode="clear_text"
-        android:background="@drawable/spinner_border">
+        android:layout_marginHorizontal="20dp">
 
-        <Spinner
-            android:id="@+id/genderSpiner"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:backgroundTint="@color/white"
-            android:popupBackground="@color/white"
-            android:background="@android:color/transparent" />
-
-        <ImageView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|center_vertical"
-            android:src="@drawable/ic_dropdown_arrow" />
+            android:layout_marginTop="10dp"
+            app:endIconMode="clear_text"
+            android:background="@drawable/spinner_border">
 
-    </FrameLayout>
+            <Spinner
+                android:id="@+id/genderSpiner"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/white"
+                android:popupBackground="@color/white"
+                android:background="@android:color/transparent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:src="@drawable/ic_dropdown_arrow" />
+        </FrameLayout>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <TextView
@@ -55,29 +62,41 @@
         android:layout_marginTop="20dp"
         android:text="Tanggal Lahir" />
 
-    <FrameLayout
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/dateLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp"
-        app:endIconMode="clear_text"
-        android:background="@drawable/spinner_border">
+        android:layout_marginTop="10dp">
 
-        <Spinner
-            android:id="@+id/dateSpinner"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:backgroundTint="@color/white"
-            android:popupBackground="@color/white"
-            android:background="@android:color/transparent" />
-
-        <ImageView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|center_vertical"
-            android:src="@drawable/ic_dropdown_arrow" />
+            android:background="@drawable/spinner_border">
 
-    </FrameLayout>
+            <EditText
+                android:id="@+id/dateEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/spinner_border"
+                android:hint="DD/MM/YY"
+                android:inputType="none"
+                android:focusable="false"
+                android:clickable="true"
+                android:paddingEnd="30dp"
+                android:textColorHint="@android:color/black" />
+
+            <ImageView
+                android:id="@+id/calendarIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/calendar"
+                android:padding="8dp"/>
+        </RelativeLayout>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -86,29 +105,36 @@
         android:layout_marginTop="20dp"
         android:text="Pendidikan" />
 
-    <FrameLayout
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/pendidikanLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp"
-        app:endIconMode="clear_text"
-        android:background="@drawable/spinner_border">
+        android:layout_marginHorizontal="20dp">
 
-        <Spinner
-            android:id="@+id/educationSpiner"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:backgroundTint="@color/white"
-            android:popupBackground="@color/white"
-            android:background="@android:color/transparent" />
-
-        <ImageView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|center_vertical"
-            android:src="@drawable/ic_dropdown_arrow" />
+            app:endIconMode="clear_text"
+            android:background="@drawable/spinner_border">
 
-    </FrameLayout>
+            <Spinner
+                android:id="@+id/educationSpiner"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/white"
+                android:popupBackground="@color/white"
+                android:background="@android:color/transparent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:src="@drawable/ic_dropdown_arrow" />
+
+        </FrameLayout>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -117,29 +143,66 @@
         android:layout_marginTop="20dp"
         android:text="Pekerjaan" />
 
-    <FrameLayout
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/pekerjaanLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp"
-        app:endIconMode="clear_text"
-        android:background="@drawable/spinner_border">
+        android:layout_marginHorizontal="20dp">
 
-        <Spinner
-            android:id="@+id/occupationSpinner"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:backgroundTint="@color/white"
-            android:popupBackground="@color/white"
-            android:background="@android:color/transparent" />
-
-        <ImageView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|center_vertical"
-            android:src="@drawable/ic_dropdown_arrow" />
+            android:layout_marginTop="10dp"
+            app:endIconMode="clear_text"
+            android:background="@drawable/spinner_border">
 
-    </FrameLayout>
+            <Spinner
+                android:id="@+id/occupationSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/white"
+                android:popupBackground="@color/white"
+                android:background="@android:color/transparent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:src="@drawable/ic_dropdown_arrow" />
+
+        </FrameLayout>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tvnama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:text="nama" />
+    <TextView
+        android:id="@+id/tvemail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:text="email" />
+    <TextView
+        android:id="@+id/tvpassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:text="password" />
+    <TextView
+        android:id="@+id/tvconfirmpassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:text="confirm password" />
+
 
     <View
         android:layout_width="match_parent"

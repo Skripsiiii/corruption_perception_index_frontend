@@ -1,13 +1,21 @@
 package com.example.corruptionperceptionindex.src.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;  // Tambahkan ini
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,27 +24,49 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.corruptionperceptionindex.R;
 import com.example.corruptionperceptionindex.src.ViewPager.ViewPagerAdapter;
-import com.example.corruptionperceptionindex.src.fragmentsKuesioner.dimenssionFirst;
+import com.example.corruptionperceptionindex.src.connection.Koneksi;
 import com.example.corruptionperceptionindex.src.screens.kuesioner.dimenssionQuestion;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 public class kuesionerFragmenBott extends Fragment {
 
+    Spinner provinsiSpinner, kabupatenkotaSpiner;
     private ViewPager2 viewPager;
     private Handler slideHandler = new Handler(Looper.getMainLooper());
     private final long SLIDE_DELAY = 3000;
     private int direction = 1;
+    private HashMap<String, Integer> provinceIdMap = new HashMap<>();
+    private HashMap<String, Integer> cityIdMap = new HashMap<>();
     Button mulaiKuesioner;
+    EditText tahunEdt;
+    private int selectedCityId;
 
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_kuesioner_fragmen_bott, container, false);
 
         mulaiKuesioner = view.findViewById(R.id.btn_mulai);
+        provinsiSpinner = view.findViewById(R.id.provinsiSpiner);
+        kabupatenkotaSpiner = view.findViewById(R.id.kabupatenkotaSpinner);
+        tahunEdt = view.findViewById(R.id.tahun);
+
+        // Mengisi tahunEdt dengan tahun saat ini
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        tahunEdt.setText(String.valueOf(currentYear));
+
+        new FetchProvincesTask().execute();
 
         viewPager = view.findViewById(R.id.viewPager);
         List<String> data = Arrays.asList(
@@ -58,10 +88,47 @@ public class kuesionerFragmenBott extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent startQuestionaire = new Intent(getActivity(), dimenssionQuestion.class);
+
+                String selectedProvinsi = (String) provinsiSpinner.getSelectedItem();
+                String selectedKabupaten = (String) kabupatenkotaSpiner.getSelectedItem();
+                String tahun = tahunEdt.getText().toString();
+                saveData(selectedProvinsi, selectedKabupaten, tahun);
+
+                // Log data yang akan disimpan
+                Log.d("kuesionerFragmenBott", "Saving data - Provinsi: " + selectedProvinsi + ", Kabupaten: " + selectedKabupaten + ", Tahun: " + tahun);
+
                 startActivity(startQuestionaire);
             }
         });
 
+        provinsiSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position != 0) {
+                    String selectedProvinceName = (String) provinsiSpinner.getSelectedItem();
+                    int selectedProvinceId = provinceIdMap.get(selectedProvinceName);
+                    new FetchCitiesTask(selectedProvinceId).execute();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        kabupatenkotaSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position != 0) {
+                    String selectedCityName = (String) kabupatenkotaSpiner.getSelectedItem();
+                    selectedCityId = cityIdMap.get(selectedCityName);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
         return view;
     }
@@ -93,5 +160,114 @@ public class kuesionerFragmenBott extends Fragment {
         super.onDestroyView();
         // Hentikan otomatis slide saat fragment di-destroy
         slideHandler.removeCallbacksAndMessages(null);
+    }
+
+    private class FetchProvincesTask extends AsyncTask<Void, Void, List<String>> {
+        @Override
+        protected List<String> doInBackground(Void... voids) {
+            List<String> provincesList = new ArrayList<>();
+            provincesList.add("Pilih Provinsi");
+
+            try {
+                Koneksi koneksi = new Koneksi();
+                URL url = new URL(koneksi.connProvince());
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String inputLine;
+                StringBuilder content = new StringBuilder();
+
+                while ((inputLine = in.readLine()) != null) {
+                    content.append(inputLine);
+                }
+
+                in.close();
+                conn.disconnect();
+
+                JSONObject jsonResponse = new JSONObject(content.toString());
+                JSONArray jsonArray = jsonResponse.getJSONArray("provinces");
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject provinceObject = jsonArray.getJSONObject(i);
+                    String provinceName = provinceObject.getString("name");
+                    int provinceId = provinceObject.getInt("id");
+                    provincesList.add(provinceName);
+                    provinceIdMap.put(provinceName, provinceId); // Map province name to its ID
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return provincesList;
+        }
+
+        @Override
+        protected void onPostExecute(List<String> provincesList) {
+            ArrayAdapter<String> profAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, provincesList);
+            profAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            provinsiSpinner.setAdapter(profAdapter);
+        }
+    }
+
+    private class FetchCitiesTask extends AsyncTask<Void, Void, List<String>> {
+        private int provinceId;
+
+        public FetchCitiesTask(int provinceId) {
+            this.provinceId = provinceId;
+        }
+
+        @Override
+        protected List<String> doInBackground(Void... voids) {
+            List<String> citiesList = new ArrayList<>();
+            citiesList.add("Pilih Kabupaten/Kota");
+
+            try {
+                Koneksi koneksi = new Koneksi();
+                URL url = new URL(koneksi.connCities(provinceId));
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String inputLine;
+                StringBuilder content = new StringBuilder();
+
+                while ((inputLine = in.readLine()) != null) {
+                    content.append(inputLine);
+                }
+
+                in.close();
+                conn.disconnect();
+
+                JSONObject jsonResponse = new JSONObject(content.toString());
+                JSONArray jsonArray = jsonResponse.getJSONArray("cities");
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject cityObject = jsonArray.getJSONObject(i);
+                    String cityName = cityObject.getString("name");
+                    int cityId = cityObject.getInt("id");
+                    citiesList.add(cityName);
+                    cityIdMap.put(cityName, cityId); // Map city name to its ID
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return citiesList;
+        }
+
+        @Override
+        protected void onPostExecute(List<String> citiesList) {
+            ArrayAdapter<String> kabAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, citiesList);
+            kabAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            kabupatenkotaSpiner.setAdapter(kabAdapter);
+        }
+    }
+
+    private void saveData(String provinsi, String kabupaten, String tahun) {
+        SharedPreferences prefs = requireActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("selectprovinsi", provinsi);
+        editor.putString("selectkabupaten", kabupaten);
+        editor.putString("tahun", tahun);
+        editor.apply();
     }
 }

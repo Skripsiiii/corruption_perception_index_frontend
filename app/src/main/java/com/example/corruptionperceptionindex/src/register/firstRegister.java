@@ -1,22 +1,33 @@
 package com.example.corruptionperceptionindex.src.register;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.corruptionperceptionindex.R;
+import com.example.corruptionperceptionindex.src.screens.main.MainMenu;
+import com.example.corruptionperceptionindex.src.viewmodel.RegistrationViewModel;
+
+import java.util.Objects;
 
 public class firstRegister extends Fragment {
 
+    private RegistrationViewModel registrationViewModel;
     com.google.android.material.textfield.TextInputLayout userLayout, emailLayout, passwordLayout, confirmPasswordLayout;
     com.google.android.material.textfield.TextInputEditText namaEditText, emailEditText, passwordEditText, confirmpasswordEditText;
     ImageView unchecked1, checked1, unchecked2, checked2, unchecked3, checked3;
@@ -26,15 +37,18 @@ public class firstRegister extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        View view = inflater.inflate(R.layout.activity_first_register, container, false);
-        View fragment = inflater.inflate(R.layout.activity_first_register, container, true);
+        View fragment = inflater.inflate(R.layout.activity_first_register, container, false);
+
+        registrationViewModel = new ViewModelProvider(requireActivity()).get(RegistrationViewModel.class);
 
         namaEditText = fragment.findViewById(R.id.nama);
         emailEditText = fragment.findViewById(R.id.email);
         passwordEditText = fragment.findViewById(R.id.password);
         confirmpasswordEditText = fragment.findViewById(R.id.confirmPassword);
         profileLayout = fragment.findViewById(R.id.imageLayout);
-
+        userLayout = fragment.findViewById(R.id.namaLayout);
+        passwordLayout = fragment.findViewById(R.id.passwordLayout);
+        emailLayout = fragment.findViewById(R.id.emailLayout);
         confirmPasswordLayout = fragment.findViewById(R.id.confirmPasswordLayout);
 
         unchecked1 = fragment.findViewById(R.id.unchaked1);
@@ -50,9 +64,66 @@ public class firstRegister extends Fragment {
         checked3.setVisibility(View.GONE);
 
         loginButton = fragment.findViewById(R.id.btn_login);
-        loginBtnEnableDisable();
 
         profileLayout.setImageResource(R.mipmap.profile1);
+
+        // Load saved data
+        loadSavedData();
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userLayout.setError("");
+                passwordLayout.setError("");
+                emailLayout.setError("");
+                confirmPasswordLayout.setError("");
+                String username = Objects.requireNonNull(namaEditText.getText()).toString();
+                String password = Objects.requireNonNull(passwordEditText.getText()).toString();
+                String email = Objects.requireNonNull(emailEditText.getText()).toString();
+                String confirmPassword = Objects.requireNonNull(confirmpasswordEditText.getText()).toString();
+                if (TextUtils.isEmpty(username)) {
+                    userLayout.setError("Username tidak boleh kosong");
+                } else if (TextUtils.isEmpty(email)) {
+                    emailLayout.setError("Email tidak boleh kosong");
+                } else if (TextUtils.isEmpty(password)) {
+                    passwordLayout.setError("Password tidak boleh kosong");
+                } else if (TextUtils.isEmpty(confirmPassword)) {
+                    confirmPasswordLayout.setError("Password tidak boleh kosong");
+                } else {
+                    // Save data to ViewModel
+                    registrationViewModel.setName(username);
+                    registrationViewModel.setEmail(email);
+                    registrationViewModel.setPassword(password);
+                    registrationViewModel.setPasswordConfirmation(confirmPassword);
+
+                    // Save data to SharedPreferences
+//                    saveData(username, email, password, confirmPassword);
+//
+////                    Intent tested = new Intent(getActivity(), MainMenu.class);
+////                    startActivity(tested);
+//
+//                    // Navigate to the next page
+//                    ViewPager2 viewPager = requireActivity().findViewById(R.id.viewPager);
+//                    viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
+
+
+                    //sharedpreferences
+                    saveData(username, email, password, confirmPassword);
+
+                    SharedPreferences prefs = requireActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putBoolean("isLoggedIn", true);
+                    editor.apply();
+
+// Navigate to the next page
+                    ViewPager2 viewPager = requireActivity().findViewById(R.id.viewPager);
+                    viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
+
+
+
+                }
+            }
+        });
 
         passwordEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -77,7 +148,6 @@ public class firstRegister extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 checkPasswordMatch();
-                loginBtnEnableDisable();
             }
 
             @Override
@@ -129,17 +199,26 @@ public class firstRegister extends Fragment {
         }
     }
 
-    private void loginBtnEnableDisable() {
-        String nama = namaEditText.getText().toString();
-        String email = emailEditText.getText().toString();
-        String password = passwordEditText.getText().toString();
-        String confirmPassword = confirmpasswordEditText.getText().toString();
-
-        if (!nama.isEmpty() && !email.isEmpty() && !password.isEmpty() && !confirmPassword.isEmpty()) {
-            loginButton.setEnabled(true);
-        } else {
-            loginButton.setEnabled(false);
-        }
+    private void saveData(String name, String email, String password, String confirmPassword) {
+        SharedPreferences prefs = requireActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("name", name);
+        editor.putString("email", email);
+        editor.putString("password", password);
+        editor.putString("confirmPassword", confirmPassword);
+        editor.apply();
     }
 
+    private void loadSavedData() {
+        SharedPreferences prefs = requireActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+        String name = prefs.getString("name", "");
+        String email = prefs.getString("email", "");
+        String password = prefs.getString("password", "");
+        String confirmPassword = prefs.getString("confirmPassword", "");
+
+//        namaEditText.setText(name);
+//        emailEditText.setText(email);
+//        passwordEditText.setText(password);
+//        confirmpasswordEditText.setText(confirmPassword);
+    }
 }

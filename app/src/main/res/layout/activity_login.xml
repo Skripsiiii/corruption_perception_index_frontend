@@ -214,7 +214,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/backgroundhome"
             android:backgroundTint="@color/gray"
-            android:text="DAFTAR"
+            android:text="Masuk"
             android:textColor="@color/white" />
 
         <LinearLayout

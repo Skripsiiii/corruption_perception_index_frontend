@@ -1,0 +1,27 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [95.324, 5.264],
+            [96.418, 4.423],
+            [97.704, 4.137],
+            [97.349, 3.102],
+            [96.444, 2.504],
+            [95.930, 3.455],
+            [95.324, 5.264]
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Aceh",
+        "strokeColor": "#FFA500",
+        "fillColor": "#FF4500"
+      }
+    }
+  ]
+}

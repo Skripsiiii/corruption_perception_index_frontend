@@ -66,7 +66,6 @@
                         android:text="Status Warna"
                         android:textSize="10dp"
                         android:textColor="@android:color/white" />
-
                 </LinearLayout>
 
             </LinearLayout>
@@ -106,15 +105,6 @@
                     android:textColor="@android:color/black" />
             </FrameLayout>
         </LinearLayout>
-
-<!--        <ImageView-->
-<!--            android:id="@+id/nextButton"-->
-<!--            android:layout_width="25dp"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:src="@mipmap/next"-->
-<!--            android:layout_gravity="center_vertical"-->
-<!--            android:layout_marginStart="5dp"/>-->
-
     </LinearLayout>
 
     <TextView
@@ -125,7 +115,6 @@
         android:layout_marginTop="20dp"
         android:layout_marginHorizontal="10dp"
         android:textStyle="bold" />
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -189,7 +178,6 @@
                         android:textColor="@android:color/white" />
 
                 </LinearLayout>
-
             </LinearLayout>
         </LinearLayout>
 
@@ -227,15 +215,6 @@
                     android:textColor="@android:color/black" />
             </FrameLayout>
         </LinearLayout>
-
-<!--        <ImageView-->
-<!--            android:id="@+id/nextButtonkabupatenkota"-->
-<!--            android:layout_width="25dp"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:src="@mipmap/next"-->
-<!--            android:layout_gravity="center_vertical"-->
-<!--            android:layout_marginStart="5dp"/>-->
-
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -243,5 +222,4 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"/>
-
 </LinearLayout>

@@ -5,6 +5,9 @@
       <entry key="LoginActivity">
         <State />
       </entry>
+      <entry key="aktivasiEmail">
+        <State />
+      </entry>
       <entry key="app">
         <State>
           <targetSelectedWithDropDown>
@@ -13,12 +16,12 @@
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\Asus\.android\avd\Pixel_3a_API_30.avd" />
+                  <value value="C:\Users\Asus\.android\avd\Pixel_6_Pro_API_27.avd" />
                 </Key>
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-06-03T06:27:26.743413300Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-06-10T15:15:01.005606200Z" />
         </State>
       </entry>
     </value>

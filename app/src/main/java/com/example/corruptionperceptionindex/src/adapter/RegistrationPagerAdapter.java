@@ -1,5 +1,7 @@
 package com.example.corruptionperceptionindex.src.adapter;
 
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -16,9 +18,11 @@ import com.example.corruptionperceptionindex.src.register.thirdRegister;
 public class RegistrationPagerAdapter extends FragmentStateAdapter {
     private static final int NUM_PAGES = 6;
     private String[] fragmentTitles = {"Daftar", "Melengkapi Profile", "Melengkapi Profile", "Persepsi Publik", "Persepsi Publik", "Persepsi Publik"};
+    private int userId;
 
-    public RegistrationPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+    public RegistrationPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, int userId) {
         super(fragmentManager, lifecycle);
+        this.userId = userId;
     }
 
     @NonNull
@@ -31,7 +35,11 @@ public class RegistrationPagerAdapter extends FragmentStateAdapter {
             case 1:
                 return new secondRegister();
             case 2:
-                return new thirdRegister();
+                thirdRegister thirdRegisterFragment = new thirdRegister();
+                Bundle bundle = new Bundle();
+                bundle.putInt("USER_ID", userId);
+                thirdRegisterFragment.setArguments(bundle);
+                return thirdRegisterFragment;
             case 3:
                 return new fourthActivity();
             case 4:
