@@ -1,57 +1,58 @@
 package com.example.corruptionperceptionindex.src.connection;
 
 public class Koneksi {
+    String BASE_URL = "https://df56-180-254-70-204.ngrok-free.app/";
 
     public String connLogin(){
-        String connLogin = "https://6e49-2404-8000-1003-61d1-39cf-8c86-8a14-b8e8.ngrok-free.app/api/auth/login";
+        String connLogin = BASE_URL +"api/auth/login";
         return  connLogin;
     }
     public String connRegister(){
-        String connLogin = "https://6e49-2404-8000-1003-61d1-39cf-8c86-8a14-b8e8.ngrok-free.app/api/auth/register";
+        String connLogin = BASE_URL +"api/auth/register";
         return  connLogin;
     }
     public String connDomicili(){
-        String conDomicili = "https://6e49-2404-8000-1003-61d1-39cf-8c86-8a14-b8e8.ngrok-free.app/api/addDomiciles";
+        String conDomicili = BASE_URL +"api/addDomiciles";
         return  conDomicili;
     }
 
     public String connEducation(){
-        return "https://6e49-2404-8000-1003-61d1-39cf-8c86-8a14-b8e8.ngrok-free.app/api/educations";
+        return BASE_URL +"api/educations";
     }
 
     public String connOccupation(){
-        return  "https://6e49-2404-8000-1003-61d1-39cf-8c86-8a14-b8e8.ngrok-free.app/api/occupations";
+        return  BASE_URL +"api/occupations";
     }
     public String connProvince(){
-        return  "https://6e49-2404-8000-1003-61d1-39cf-8c86-8a14-b8e8.ngrok-free.app/api/provinces";
+        return  BASE_URL +"api/provinces";
     }
     public String connDataProvince(){
-        return  "https://6e49-2404-8000-1003-61d1-39cf-8c86-8a14-b8e8.ngrok-free.app/api/provinceData";
+        return  BASE_URL +"api/provinceData";
     }
 
 
     public String connKotaDataDimension(){
-        return  "https://6e49-2404-8000-1003-61d1-39cf-8c86-8a14-b8e8.ngrok-free.app/api/cityData/";
+        return  BASE_URL +"api/cityData/";
     }
     public String connDataDimension(){
-        return  "https://6e49-2404-8000-1003-61d1-39cf-8c86-8a14-b8e8.ngrok-free.app/api/dimensionCityData/";
+        return  BASE_URL +"api/dimensionCityData/";
     }
     public String connDataIndikator(){
-        return  "https://6e49-2404-8000-1003-61d1-39cf-8c86-8a14-b8e8.ngrok-free.app/api/indicatorCityData/";
+        return  BASE_URL +"api/indicatorCityData/";
     }
 
 
     public String connquestions(){
-        return  "https://6e49-2404-8000-1003-61d1-39cf-8c86-8a14-b8e8.ngrok-free.app/api/questions";
+        return  BASE_URL +"api/questions";
     }
     public String connquestionsViewpoints(){
-        return  "https://6e49-2404-8000-1003-61d1-39cf-8c86-8a14-b8e8.ngrok-free.app/api/viewpoints";
+        return  BASE_URL +"api/viewpoints";
     }
     public String connCities(int provinceId) {
-        return "https://6e49-2404-8000-1003-61d1-39cf-8c86-8a14-b8e8.ngrok-free.app/api/cities/" + provinceId;
+        return BASE_URL +"api/cities/" + provinceId;
     }
     public String connDimension(int provinceId) {
-        return "https://6e49-2404-8000-1003-61d1-39cf-8c86-8a14-b8e8.ngrok-free.app/api/cities/" + provinceId;
+        return BASE_URL +"api/cities/" + provinceId;
     }
 
 

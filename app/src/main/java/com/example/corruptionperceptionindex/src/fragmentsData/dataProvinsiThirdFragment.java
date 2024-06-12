@@ -92,6 +92,7 @@ public class dataProvinsiThirdFragment extends Fragment {
                 bundle.putString("selectedDimensi", selectedDimensionData.getName());
                 bundle.putInt("indexResultProvinsi", indexResult);
                 bundle.putInt("indexResultKabupatenKota", indexResultKabupatenKota);
+                bundle.putDouble("indexResultDimensi", selectedDimensionData.getIndexResult()); // Pass indexResultDimensi
                 fourthFragment.setArguments(bundle);
 
                 getParentFragmentManager()

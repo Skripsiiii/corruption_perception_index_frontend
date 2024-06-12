@@ -1,5 +1,6 @@
 package com.example.corruptionperceptionindex.src.fragments;
 
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,8 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.example.corruptionperceptionindex.R;
+import com.example.corruptionperceptionindex.src.connection.FetchProvinceIndexTask;
 import com.example.corruptionperceptionindex.src.fragmentsData.dataProvinsiFirstFragment;
 import com.example.corruptionperceptionindex.src.fragmentsData.dataProvinsiSecondFragment;
 
@@ -31,9 +34,12 @@ import java.util.Map;
 public class dataFragmentBott extends Fragment {
 
     private ImageView nextButton, prevButton;
-    private TextView countPage, dashboardTv;
+    private TextView countPage, dashboardTv, statusCPI;
     private int currentPage = 1;
     private boolean isSecondFragmentActive = false;
+    TextView scoreCPI;
+    ProgressBar resulProgress;
+    View statusWarnaCPI;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,6 +49,11 @@ public class dataFragmentBott extends Fragment {
         prevButton = view.findViewById(R.id.prevButton);
         countPage = view.findViewById(R.id.countPage);
         dashboardTv = view.findViewById(R.id.calculateDashboard);
+        scoreCPI = view.findViewById(R.id.calculateDashboard);
+        resulProgress = view.findViewById(R.id.circular_progress_bar);
+        statusWarnaCPI = view.findViewById(R.id.statusWarnaCPI);
+        statusCPI = view.findViewById(R.id.statusCPI);
+
 
         countPage.setText(String.valueOf(currentPage));
         loadProvinsiFragment(currentPage);
@@ -76,6 +87,7 @@ public class dataFragmentBott extends Fragment {
 //            dashboardTv.setText("Error: " + e.getMessage());
 //            Log.e("DataFragmentBott", "Error loading data", e);
 //        }
+        fetchProvinceIndexData();
 
         return view;
     }
@@ -203,4 +215,36 @@ public class dataFragmentBott extends Fragment {
             prevButton.setEnabled(currentPage > 1);
         }
     }
+
+    private void fetchProvinceIndexData() {
+        new FetchProvinceIndexTask(averageIndexResult -> {
+            scoreCPI.setText(String.format("%.2f", averageIndexResult));
+            setProgressBarColorAndStatus(averageIndexResult);
+        }).execute();
+    }
+    private void setProgressBarColorAndStatus(double indexResult) {
+        int color;
+        String statusText;
+        if (indexResult <= 20) {
+            color = 0xFFe76f51; // Red
+            statusText = "Sangat Korup";
+        } else if (indexResult <= 40) {
+            color = 0xFFf4a261; // Orange
+            statusText = "Korup";
+        } else if (indexResult <= 60) {
+            color = 0xFFffd966; // Yellow
+            statusText = "Netral";
+        } else if (indexResult <= 80) {
+            color = 0xFF90c8ac; // Light Green
+            statusText = "Aman";
+        } else {
+            color = 0xFF69b3a2; // Green
+            statusText = "Sangat Aman";
+        }
+
+        resulProgress.getProgressDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+        statusWarnaCPI.setBackgroundColor(color);
+        statusCPI.setText(statusText);
+    }
+
 }
