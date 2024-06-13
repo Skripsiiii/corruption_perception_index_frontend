@@ -8,7 +8,7 @@
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
-    tools:context=".src.screens.main.MainMenu">
+    tools:context=".src.screens.mainPage.MainMenu">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,7 +32,6 @@
                     android:layout_height="wrap_content"
                     android:text="JUDUL"
                     android:gravity="center"
-                    android:textColor="@color/primary_900"
                     android:textSize="25dp"
                     android:textStyle="bold" />
 

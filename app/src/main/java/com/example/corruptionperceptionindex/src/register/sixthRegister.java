@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.corruptionperceptionindex.R;
 import com.example.corruptionperceptionindex.src.connection.FetchQuestionsTask;
-import com.example.corruptionperceptionindex.src.screens.main.MainMenu;
+import com.example.corruptionperceptionindex.src.screens.mainPage.MainMenu;
 
 import java.util.ArrayList;
 import java.util.List;

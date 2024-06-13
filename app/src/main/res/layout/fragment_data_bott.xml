@@ -44,7 +44,6 @@
                     android:layout_marginStart="5dp"
                     android:text="Indonesia"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
@@ -59,7 +58,6 @@
                         android:layout_height="wrap_content"
                         android:text="Data Tahun : "
                         android:textAlignment="center"
-                        android:textColor="@color/black"
                         android:textSize="16dp"
                         android:textStyle="bold" />
 
@@ -102,7 +100,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginStart="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"

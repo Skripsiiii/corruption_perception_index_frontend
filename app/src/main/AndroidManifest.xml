@@ -80,7 +80,7 @@
             android:name=".src.adapter.persepsiAdapter"
             android:exported="false" />
         <activity
-            android:name=".src.screens.main.slideMenu"
+            android:name=".src.screens.mainPage.slideMenu"
             android:exported="false"
             android:label="@string/title_activity_slide_menu"
             android:theme="@style/Theme.CorruptionPerceptionIndex.NoActionBar" />
@@ -88,7 +88,7 @@
             android:name=".src.register.aktivasiEmail"
             android:exported="false" />
         <activity
-            android:name=".src.screens.main.MainMenu"
+            android:name=".src.screens.mainPage.MainMenu"
             android:exported="false" />
         <activity
             android:name=".src.register.sixthRegister"

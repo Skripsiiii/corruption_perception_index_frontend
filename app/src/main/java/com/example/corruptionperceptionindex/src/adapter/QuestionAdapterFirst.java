@@ -45,26 +45,44 @@ public class QuestionAdapterFirst extends RecyclerView.Adapter<QuestionAdapterFi
 
         private TextView textViewQuestion;
         private RadioGroup radioGroup;
+        private RadioButton[] radioButtons;
 
         public QuestionViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewQuestion = itemView.findViewById(R.id.text_view_question);
             radioGroup = itemView.findViewById(R.id.radioGroup);
+            radioButtons = new RadioButton[10]; // Assuming 10 radio buttons
+
+            // Initialize radio buttons array
+            for (int i = 0; i < 10; i++) {
+                int resID = itemView.getResources().getIdentifier("selected" + (i + 1), "id", itemView.getContext().getPackageName());
+                radioButtons[i] = itemView.findViewById(resID);
+            }
         }
 
         public void bind(Question question) {
             textViewQuestion.setText(question.getQuestionText());
 
+            // Clear any existing selections
+            radioGroup.setOnCheckedChangeListener(null);
+            radioGroup.clearCheck();
+
             // Set the previously selected answer if exists
             if (question.getSelectedAnswer() != -1) {
-                ((RadioButton) radioGroup.getChildAt(question.getSelectedAnswer())).setChecked(true);
+                radioButtons[question.getSelectedAnswer()].setChecked(true);
             }
 
             // Handle radio button selection
             radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    int selectedAnswer = group.indexOfChild(itemView.findViewById(checkedId));
+                    int selectedAnswer = -1;
+                    for (int i = 0; i < radioButtons.length; i++) {
+                        if (radioButtons[i].getId() == checkedId) {
+                            selectedAnswer = i;
+                            break;
+                        }
+                    }
                     question.setSelectedAnswer(selectedAnswer);
                 }
             });

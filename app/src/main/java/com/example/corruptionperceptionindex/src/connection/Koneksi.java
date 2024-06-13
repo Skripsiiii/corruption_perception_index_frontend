@@ -1,7 +1,7 @@
 package com.example.corruptionperceptionindex.src.connection;
 
 public class Koneksi {
-    String BASE_URL = "https://df56-180-254-70-204.ngrok-free.app/";
+    String BASE_URL = "https://53f6-180-254-70-204.ngrok-free.app/";
 
     public String connLogin(){
         String connLogin = BASE_URL +"api/auth/login";

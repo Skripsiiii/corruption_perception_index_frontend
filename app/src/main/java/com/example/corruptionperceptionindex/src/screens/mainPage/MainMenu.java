@@ -1,17 +1,23 @@
-package com.example.corruptionperceptionindex.src.screens.main;
+package com.example.corruptionperceptionindex.src.screens.mainPage;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.AppCompatDelegate;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Switch;
+import android.widget.CompoundButton;
 
 import com.example.corruptionperceptionindex.R;
 import com.example.corruptionperceptionindex.src.fragments.changePassFragment;
@@ -23,12 +29,9 @@ import com.example.corruptionperceptionindex.src.fragments.kuesionerFragment;
 import com.example.corruptionperceptionindex.src.fragments.mapFragmentBott;
 import com.example.corruptionperceptionindex.src.fragments.persepsiFragment;
 import com.example.corruptionperceptionindex.src.fragments.profileFragment;
+import com.example.corruptionperceptionindex.src.screens.login.LoginActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.widget.Toolbar;
 
 public class MainMenu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -38,9 +41,11 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     private kuesionerFragment kuesionerFragment;
     private mapFragmentBott mapFragment;
     private dataFragmentBott dataFragment;
-    // untuk deklarasi BottomNavigationView
     private BottomNavigationView bottomNavigationView;
     TextView title;
+    private Switch darkModeSwitch;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,26 +65,53 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //bottom nav
+        // Initialize the switch and shared preferences
+        darkModeSwitch = navigationView.getHeaderView(0).findViewById(R.id.dark_mode_switch);
+        sharedPreferences = getSharedPreferences("SharedPrefs", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
+        boolean isDarkModeOn = sharedPreferences.getBoolean("isDarkModeOn", false);
+
+        if (isDarkModeOn) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            darkModeSwitch.setChecked(true);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            darkModeSwitch.setChecked(false);
+        }
+
+        darkModeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    editor.putBoolean("isDarkModeOn", true);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    editor.putBoolean("isDarkModeOn", false);
+                }
+                editor.apply();
+            }
+        });
+
+        // Initialize fragments
         profileFragment = new profileFragment();
         kuesionerFragment = new kuesionerFragment();
         mapFragment = new mapFragmentBott();
         dataFragment = new dataFragmentBott();
-
         dashboardFragmentBott dashboardFragment = new dashboardFragmentBott();
 
-
-        // Inisialisasi BottomNavigationView
+        // Initialize BottomNavigationView
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
-
-        // Pada pembuatan aktivitas, tampilkan fragmen beranda
+        // Display home fragment on activity creation
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, dashboardFragment).commit();
-
 
         title.setText("CPI");
         getSupportActionBar().setTitle("");
+
+        loadSavedData();
     }
 
     public void selectBottomNavItem(int itemId) {
@@ -109,6 +141,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new kuesionerFragment()).commit();
             title.setText("Kuesioner Saya");
         } else if (id == R.id.logOut) {
+            keluar();
             Toast.makeText(this, "Logout!", Toast.LENGTH_SHORT).show();
         }
 
@@ -139,9 +172,36 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         }
     }
 
-
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
         super.onPointerCaptureChanged(hasCapture);
+    }
+
+    private void logOut() {
+        Intent loginActivity = new Intent(MainMenu.this, LoginActivity.class);
+        loginActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(loginActivity);
+        finish();
+    }
+
+    public void keluar() {
+        new AlertDialog.Builder(this)
+                .setMessage("Anda ingin keluar?")
+                .setPositiveButton("OK", (dialog, which) -> logOut())
+                .create()
+                .show();
+    }
+
+    private void loadSavedData() {
+        SharedPreferences prefs = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+        String name = prefs.getString("name", "");
+        String email = prefs.getString("email", "");
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        TextView nameTextView = navigationView.getHeaderView(0).findViewById(R.id.name);
+        TextView emailTextView = navigationView.getHeaderView(0).findViewById(R.id.email);
+
+        nameTextView.setText(name);
+        emailTextView.setText(email);
     }
 }

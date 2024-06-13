@@ -56,4 +56,13 @@
     <color name="green_200">#CEF5E1</color>
 
 
+    //darkmode
+    <color name="primaryColor">#FFFFFF</color>
+    <color name="primaryDarkColor">#CCCCCC</color>
+    <color name="accentColor">#FF4081</color>
+    <color name="backgroundColor">#FFFFFF</color>
+    <color name="textColor">#000000</color>
+    <color name="spinnerItemTextDark">#FFFFFF</color>
+
+
 </resources>

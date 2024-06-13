@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,10 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.corruptionperceptionindex.R;
-import com.example.corruptionperceptionindex.src.screens.main.MainMenu;
 import com.example.corruptionperceptionindex.src.viewmodel.RegistrationViewModel;
 
 import java.util.Objects;
