@@ -18,9 +18,7 @@ import android.widget.TextView;
 
 import com.example.corruptionperceptionindex.R;
 import com.example.corruptionperceptionindex.src.connection.FetchProvinceIndexTask;
-import com.example.corruptionperceptionindex.src.fragments.dataFragmentBott;
-import com.example.corruptionperceptionindex.src.fragments.mapFragmentBott;
-import com.example.corruptionperceptionindex.src.screens.main.MainMenu;
+import com.example.corruptionperceptionindex.src.screens.mainPage.MainMenu;
 
 public class dashboardFragmentBott extends Fragment {
 

@@ -41,6 +41,9 @@ public class dimenssionQuestion extends AppCompatActivity {
     private static final String PREFS_NAME = "QuestionnairePrefs";
     private SharedPreferences sharedPreferences;
 
+    private static final String COUNTER_PREF = "counter_pref";
+    private int clickCounter = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +59,8 @@ public class dimenssionQuestion extends AppCompatActivity {
         namatahundaerahTV = findViewById(R.id.tahunDaerahTxt);
 
         sharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+
+        clickCounter = sharedPreferences.getInt(COUNTER_PREF, 0);
 
         // Membaca data dari SharedPreferences
         SharedPreferences prefs = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
@@ -92,8 +97,28 @@ public class dimenssionQuestion extends AppCompatActivity {
             }
         });
 
+        currentDimensionIndex = getIntent().getIntExtra("currentDimensionIndex", 0);
+        clickCounter = sharedPreferences.getInt(COUNTER_PREF, 0);
+
         Koneksi koneksi = new Koneksi();
         String apiUrl = koneksi.connquestions();
+
+        new FetchDimensionsTask(apiUrl, new FetchDimensionsTask.OnDimensionsFetchedListener() {
+            @Override
+            public void onDimensionsFetched(List<Dimension> dimensionsList) {
+                dimensions = dimensionsList;
+                if (!dimensions.isEmpty()) {
+                    loadDimension(dimensions.get(currentDimensionIndex));
+                }
+            }
+        }).execute();
+
+        if (savedInstanceState == null) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            fragment = new dimenssionFirst();
+            transaction.replace(R.id.fragment_container, fragment);
+            transaction.commit();
+        }
 
         new FetchDimensionsTask(apiUrl, new FetchDimensionsTask.OnDimensionsFetchedListener() {
             @Override
@@ -186,6 +211,11 @@ public class dimenssionQuestion extends AppCompatActivity {
                 .setPositiveButton("OK", (dialog, which) -> {
                     saveAnswers(); // Save answers before moving to the next dimension
                     currentDimensionIndex++;
+                    clickCounter++; // Increment the counter
+                    sharedPreferences.edit().putInt(COUNTER_PREF, clickCounter).apply(); // Save the counter to SharedPreferences
+
+                    updateProgress(); // Update the progress in SharedPreferences
+
                     if (currentDimensionIndex < dimensions.size()) {
                         loadDimension(dimensions.get(currentDimensionIndex));
                         prevButton.setVisibility(View.GONE); // Hide prevButton when a new dimension is loaded
@@ -195,6 +225,14 @@ public class dimenssionQuestion extends AppCompatActivity {
                 })
                 .create()
                 .show();
+    }
+
+    private void updateProgress() {
+        int progress = (int) ((clickCounter / 17.0) * 100);
+        sharedPreferences.edit()
+                .putInt("progress", progress)
+                .putInt("clickCounter", clickCounter)
+                .apply();
     }
 
     private void saveAnswers() {

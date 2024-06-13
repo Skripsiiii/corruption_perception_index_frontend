@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import com.example.corruptionperceptionindex.R;
 import com.example.corruptionperceptionindex.src.screens.intro.IntroActivity;
-import com.example.corruptionperceptionindex.src.screens.main.MainMenu;
+import com.example.corruptionperceptionindex.src.screens.mainPage.MainMenu;
 
 public class SplashActivity extends AppCompatActivity {
 
