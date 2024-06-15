@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -59,20 +60,20 @@ public class dataProvinsiSecondFragment extends Fragment {
             int color;
             String statusText;
             if (indexResult <= 20) {
-                color = 0xFFe76f51; // Red
-                statusText = "Sangat Korup";
+                color = ContextCompat.getColor(getContext(), R.color.VeryDanger);
+                statusText = "Sangat Tinggi";
             } else if (indexResult <= 40) {
-                color = 0xFFf4a261; // Orange
-                statusText = "Korup";
+                color = ContextCompat.getColor(getContext(), R.color.SlightDdanger);
+                statusText = "Tinggi";
             } else if (indexResult <= 60) {
-                color = 0xFFffd966; // Yellow
-                statusText = "Netral";
+                color = ContextCompat.getColor(getContext(), R.color.midDanger);
+                statusText = "Sedang";
             } else if (indexResult <= 80) {
-                color = 0xFF90c8ac; // Light Green
-                statusText = "Aman";
+                color = ContextCompat.getColor(getContext(), R.color.SlightSafe);
+                statusText = "Rendah";
             } else {
-                color = 0xFF69b3a2; // Green
-                statusText = "Sangat Aman";
+                color = ContextCompat.getColor(getContext(), R.color.Safe);
+                statusText = "Sangat Rendah";
             }
 
             statusBar.setBackgroundColor(color);

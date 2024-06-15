@@ -109,28 +109,33 @@
             android:layout_marginTop="10dp"
             android:text="Provinsi" />
 
-        <FrameLayout
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/provinsiLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/spinner_border">
-
-            <Spinner
-                android:id="@+id/provinsiSpiner"
+            android:layout_marginHorizontal="20dp">
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/white"
-                android:popupBackground="@color/white"
-                android:background="@android:color/transparent" />
-
-            <ImageView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|center_vertical"
-                android:src="@drawable/ic_dropdown_arrow" />
+                android:layout_marginTop="10dp"
+                android:background="@drawable/spinner_border">
 
-        </FrameLayout>
+                <Spinner
+                    android:id="@+id/provinsiSpiner"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:backgroundTint="@color/white"
+                    android:popupBackground="@color/white"
+                    android:background="@android:color/transparent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:src="@drawable/ic_dropdown_arrow" />
+            </FrameLayout>
+        </com.google.android.material.textfield.TextInputLayout>
+
 
 
         <TextView
@@ -140,28 +145,34 @@
             android:layout_marginTop="10dp"
             android:text="Kabupaten/Kota" />
 
-        <FrameLayout
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/kabupatenkotaLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/spinner_border">
-
-            <Spinner
-                android:id="@+id/kabupatenkotaSpinner"
+            android:layout_marginHorizontal="20dp">
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/white"
-                android:popupBackground="@color/white"
-                android:background="@android:color/transparent" />
-
-            <ImageView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|center_vertical"
-                android:src="@drawable/ic_dropdown_arrow" />
+                android:layout_marginTop="10dp"
+                android:background="@drawable/spinner_border">
 
-        </FrameLayout>
+                <Spinner
+                    android:id="@+id/kabupatenkotaSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:backgroundTint="@color/white"
+                    android:popupBackground="@color/white"
+                    android:background="@android:color/transparent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:src="@drawable/ic_dropdown_arrow" />
+
+            </FrameLayout>
+
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 

@@ -64,5 +64,12 @@
     <color name="textColor">#000000</color>
     <color name="spinnerItemTextDark">#FFFFFF</color>
 
+    //status warna map dan data
+    <color name="VeryDanger">#FF7373</color>
+    <color name="SlightDdanger">#FFB06A</color>
+    <color name="midDanger">#FFD866</color>
+    <color name="SlightSafe">#C7D19B</color>
+    <color name="Safe">#8FCACF</color>
+
 
 </resources>

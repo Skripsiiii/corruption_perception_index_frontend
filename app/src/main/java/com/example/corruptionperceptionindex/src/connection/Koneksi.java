@@ -1,7 +1,7 @@
 package com.example.corruptionperceptionindex.src.connection;
 
 public class Koneksi {
-    String BASE_URL = "https://53f6-180-254-70-204.ngrok-free.app/";
+    String BASE_URL = "https://ea19-180-252-232-45.ngrok-free.app/";
 
     public String connLogin(){
         String connLogin = BASE_URL +"api/auth/login";
@@ -41,6 +41,9 @@ public class Koneksi {
         return  BASE_URL +"api/indicatorCityData/";
     }
 
+    public String connqmap(){
+        return  BASE_URL +"api/map";
+    }
 
     public String connquestions(){
         return  BASE_URL +"api/questions";
