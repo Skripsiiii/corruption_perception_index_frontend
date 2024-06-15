@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
 import android.util.Log;  // Tambahkan ini
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.corruptionperceptionindex.R;
 import com.example.corruptionperceptionindex.src.ViewPager.ViewPagerAdapter;
 import com.example.corruptionperceptionindex.src.connection.Koneksi;
+import com.example.corruptionperceptionindex.src.register.secondRegister;
 import com.example.corruptionperceptionindex.src.screens.kuesioner.dimenssionQuestion;
 
 import org.json.JSONArray;
@@ -52,6 +54,7 @@ public class kuesionerFragmenBott extends Fragment {
     Button mulaiKuesioner;
     EditText tahunEdt;
     private int selectedCityId;
+    com.google.android.material.textfield.TextInputLayout provinsiLayout, kabupatenkotaLayout;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -61,6 +64,8 @@ public class kuesionerFragmenBott extends Fragment {
         provinsiSpinner = view.findViewById(R.id.provinsiSpiner);
         kabupatenkotaSpiner = view.findViewById(R.id.kabupatenkotaSpinner);
         tahunEdt = view.findViewById(R.id.tahun);
+        provinsiLayout = view.findViewById(R.id.provinsiLayout);
+        kabupatenkotaLayout = view.findViewById(R.id.kabupatenkotaLayout);
 
         // Mengisi tahunEdt dengan tahun saat ini
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
@@ -270,4 +275,29 @@ public class kuesionerFragmenBott extends Fragment {
         editor.putString("tahun", tahun);
         editor.apply();
     }
+
+//    private void validateFieldsAndRegister() {
+//        provinsiLayout.setError(null);
+//        kabupatenkotaLayout.setError(null);
+//
+//
+//        String selectedGender = genderSpinner.getSelectedItem().toString();
+//        String selectedDate = dateEditText.getText().toString();
+//        String selectedEducation = educationSpiner.getSelectedItem().toString();
+//        String selectedOccupation = occupationSpinner.getSelectedItem().toString();
+//
+//        if (selectedGender.equals("Pilih Jenis Kelamin")) {
+//            jenisklaminLayout.setError("Pilih jenis kelamin anda");
+//        } else if (TextUtils.isEmpty(selectedDate) || selectedDate.equals("DD/MM/YY")) {
+//            bornLayout.setError("Pilih tanggal lahir anda");
+//        } else if (selectedEducation.equals("Pilih Pendidikan")) {
+//            pendidikanLayout.setError("Pilih pendidikan anda");
+//        } else if (selectedOccupation.equals("Pilih Pekerjaan")) {
+//            pekerjaanLayout.setError("Pilih pekerjaan anda");
+//        } else {
+//            saveData(selectedGender, selectedDate, selectedEducation, selectedOccupation);
+//            new secondRegister.RegisterUserTask().execute();
+//        }
+//    }
+
 }
