@@ -31,6 +31,8 @@ public class aktivasiEmail extends AppCompatActivity {
         countdown_timer = findViewById(R.id.countdown_timer);
         requestButton = findViewById(R.id.btnAktivasi);
 
+        requestButton.setVisibility(View.GONE);
+
         textCount.setVisibility(View.GONE);
         countdown_timer.setVisibility(View.GONE);
 
