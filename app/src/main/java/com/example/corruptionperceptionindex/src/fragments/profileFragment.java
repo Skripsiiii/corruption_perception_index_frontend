@@ -11,9 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.corruptionperceptionindex.R;
 
@@ -25,6 +27,7 @@ public class profileFragment extends Fragment {
     EditText namaEdt, emailEdt, DoBEdt;
     Spinner genderSpinner, pendidikanSpinner, pekerjaanSpinner;
     TextView namaTv, emailTv;
+    Button simpanProfileBtn;
 
     @Nullable
     @Override
@@ -39,12 +42,17 @@ public class profileFragment extends Fragment {
         pekerjaanSpinner = view.findViewById(R.id.pekerjaanSpinner);
         namaTv = view.findViewById(R.id.nametxt);
         emailTv = view.findViewById(R.id.emailTxt);
+        simpanProfileBtn = view.findViewById(R.id.btn_simpan);
 
         // Initialize Spinners with dummy data for demonstration purposes
         setupSpinners();
 
         // Load saved data
         loadSavedData();
+
+        // Set save button click listener
+        simpanProfileBtn.setOnClickListener(v -> saveProfileData()
+        );
 
         return view;
     }
@@ -132,5 +140,31 @@ public class profileFragment extends Fragment {
                 spinner.setSelection(position);
             }
         }
+    }
+
+    private void saveProfileData() {
+        String name = namaEdt.getText().toString();
+        String email = emailEdt.getText().toString();
+        String selectedGender = genderSpinner.getSelectedItem().toString();
+        String selectedDate = DoBEdt.getText().toString();
+        String selectedEducation = pendidikanSpinner.getSelectedItem().toString();
+        String selectedOccupation = pekerjaanSpinner.getSelectedItem().toString();
+
+        SharedPreferences prefs = requireActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putString("name", name);
+        editor.putString("email", email);
+        editor.putString("selectedGender", selectedGender);
+        editor.putString("selectedDate", selectedDate);
+        editor.putString("selectedEducation", selectedEducation);
+        editor.putString("selectedOccupation", selectedOccupation);
+
+        editor.apply();
+
+        // Update TextViews
+        namaTv.setText(name);
+        emailTv.setText(email);
+        Toast.makeText(getActivity(), "BErhasil menyimpan data", Toast.LENGTH_SHORT).show();
     }
 }

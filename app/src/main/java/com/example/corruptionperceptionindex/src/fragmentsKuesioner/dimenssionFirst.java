@@ -50,7 +50,7 @@ public class dimenssionFirst extends Fragment {
         List<Question> questions = indicator.getQuestions();
         if (questions.isEmpty()) {
             if (getActivity() instanceof dimenssionQuestion) {
-                ((dimenssionQuestion) getActivity()).showNoMoreIndicatorsMessage();
+                ((dimenssionQuestion) getActivity()).showNoQuestionsDialog();
             }
         } else {
             adapter = new QuestionAdapterFirst(questions);
@@ -65,8 +65,16 @@ public class dimenssionFirst extends Fragment {
     }
 
     public void nextIndicator() {
+        if (adapter != null && !adapter.areAllQuestionsAnswered()) {
+            if (getActivity() instanceof dimenssionQuestion) {
+                ((dimenssionQuestion) getActivity()).showIncompleteQuestionsAlert();
+            }
+            return; // Keluar jika tidak semua pertanyaan dijawab
+        }
+
         if (currentIndicatorIndex < indicators.size() - 1) {
             currentIndicatorIndex++;
+            ((dimenssionQuestion) getActivity()).showAnimatedDialog();
             loadIndicator(indicators.get(currentIndicatorIndex));
         } else if (getActivity() instanceof dimenssionQuestion) {
             ((dimenssionQuestion) getActivity()).showNoMoreIndicatorsMessage();
