@@ -24,29 +24,36 @@
         android:layout_marginTop="20dp"
         android:text="Provinsi" />
 
-    <FrameLayout
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/provinsiLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp"
-        app:endIconMode="clear_text"
-        android:background="@drawable/spinner_border">
+        android:layout_marginHorizontal="20dp">
 
-        <Spinner
-            android:id="@+id/provinsiSpiner"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:backgroundTint="@color/white"
-            android:popupBackground="@color/white"
-            android:background="@android:color/transparent" />
-
-        <ImageView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|center_vertical"
-            android:src="@drawable/ic_dropdown_arrow" />
+            android:layout_marginTop="10dp"
+            app:endIconMode="clear_text"
+            android:background="@drawable/spinner_border">
 
-    </FrameLayout>
+            <Spinner
+                android:id="@+id/provinsiSpiner"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/white"
+                android:popupBackground="@color/white"
+                android:background="@android:color/transparent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:src="@drawable/ic_dropdown_arrow" />
+
+        </FrameLayout>
+    </com.google.android.material.textfield.TextInputLayout>
+
 
 
     <TextView
@@ -56,29 +63,38 @@
         android:layout_marginTop="20dp"
         android:text="Kabupaten/Kota" />
 
-    <FrameLayout
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cityLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp"
-        app:endIconMode="clear_text"
-        android:background="@drawable/spinner_border">
+        android:layout_marginHorizontal="20dp">
 
-        <Spinner
-            android:id="@+id/kabupatenkotaSpinner"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:backgroundTint="@color/white"
-            android:popupBackground="@color/white"
-            android:background="@android:color/transparent" />
-
-        <ImageView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|center_vertical"
-            android:src="@drawable/ic_dropdown_arrow" />
+            android:layout_marginTop="10dp"
+            app:endIconMode="clear_text"
+            android:background="@drawable/spinner_border">
 
-    </FrameLayout>
+            <Spinner
+                android:id="@+id/kabupatenkotaSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/white"
+                android:popupBackground="@color/white"
+                android:background="@android:color/transparent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:src="@drawable/ic_dropdown_arrow" />
+
+        </FrameLayout>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -87,29 +103,37 @@
         android:layout_marginTop="20dp"
         android:text="Kecamatan" />
 
-    <FrameLayout
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/kacamatanLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp"
-        app:endIconMode="clear_text">
+        android:layout_marginHorizontal="20dp">
 
-        <EditText
-            android:id="@+id/kacamatanEditText"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_weight="0"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/rounded_background"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:hint="Masukan Kacamatan"
-            android:inputType="textEmailAddress"
-            android:padding="10dp"
-            android:textColorHint="@color/black"
-            android:textSize="12dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:endIconMode="clear_text">
 
-    </FrameLayout>
+            <EditText
+                android:id="@+id/kacamatanEditText"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="0"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_background"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="Masukan Kacamatan"
+                android:inputType="textEmailAddress"
+                android:padding="10dp"
+                android:textColorHint="@color/black"
+                android:textSize="12dp" />
+
+        </FrameLayout>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -118,29 +142,37 @@
         android:layout_marginTop="20dp"
         android:text="Kelurahan/Desa" />
 
-    <FrameLayout
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/kotaLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp"
-        app:endIconMode="clear_text">
-
-        <EditText
-            android:id="@+id/kelurahandesaEditText"
+        android:layout_marginHorizontal="20dp">
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_weight="0"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/rounded_background"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:hint="Masukan Kelurahan/Desa"
-            android:inputType="textEmailAddress"
-            android:padding="10dp"
-            android:textColorHint="@color/black"
-            android:textSize="12dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:endIconMode="clear_text">
 
-    </FrameLayout>
+            <EditText
+                android:id="@+id/kelurahandesaEditText"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="0"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_background"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="Masukan Kelurahan/Desa"
+                android:inputType="textEmailAddress"
+                android:padding="10dp"
+                android:textColorHint="@color/black"
+                android:textSize="12dp" />
+
+        </FrameLayout>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <TextView
         android:id="@+id/userid"

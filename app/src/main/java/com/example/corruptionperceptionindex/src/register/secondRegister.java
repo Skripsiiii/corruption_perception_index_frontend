@@ -206,7 +206,7 @@ public class secondRegister extends Fragment {
                     saveData(selectedGender, selectedDate, selectedEducation, selectedOccupation);
                     new RegisterUserTask().execute();
                 }
-            }, 4000); // 4000 milliseconds = 4 seconds
+            }, 6000); // 4000 milliseconds = 4 seconds
         }
     }
 

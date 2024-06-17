@@ -1,9 +1,12 @@
 package com.example.corruptionperceptionindex.src.register;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +51,8 @@ public class thirdRegister extends Fragment {
     private int userId;
     private int selectedCityId;
 
+    com.google.android.material.textfield.TextInputLayout provinsiLayout, cityLayout, kacamatanLayout, kotaTVLayout;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -61,16 +66,15 @@ public class thirdRegister extends Fragment {
         kacamatanEdt = view.findViewById(R.id.kacamatanEditText);
         kelurahanEdt = view.findViewById(R.id.kelurahandesaEditText);
 
-
         provinsiSpinner = view.findViewById(R.id.provinsiSpiner);
         kabupatenkotaSpiner = view.findViewById(R.id.kabupatenkotaSpinner);
-//        kacamatanSpiner = view.findViewById(R.id.kecamatanSpiner);
-//        kelurahanSpinner = view.findViewById(R.id.kelurahandesaSpinner);
+
+        provinsiLayout = view.findViewById(R.id.provinsiLayout);
+        cityLayout = view.findViewById(R.id.cityLayout);
+        kacamatanLayout = view.findViewById(R.id.kacamatanLayout);
+        kotaTVLayout = view.findViewById(R.id.kotaLayout);
 
         saveButton = view.findViewById(R.id.btn_save);
-
-        // Initialize spinner data
-//        initializeSpinners();
 
         // Fetch provinces data
         new FetchProvincesTask().execute();
@@ -105,17 +109,19 @@ public class thirdRegister extends Fragment {
         });
 
         saveButton.setOnClickListener(v -> {
-            if (selectedCityId != 0 && userId != 0) {
-                new AddDomicileTask().execute(userId, selectedCityId);
+            if (validateFieldsAndRegister()) {
+                if (selectedCityId != 0 && userId != 0) {
+                    new AddDomicileTask().execute(userId, selectedCityId);
 
-                String selectedProvinsi = (String) provinsiSpinner.getSelectedItem();
-                String selectedKabupaten = (String) kabupatenkotaSpiner.getSelectedItem();
-                saveData(selectedProvinsi, selectedKabupaten);
+                    String selectedProvinsi = (String) provinsiSpinner.getSelectedItem();
+                    String selectedKabupaten = (String) kabupatenkotaSpiner.getSelectedItem();
+                    saveData(selectedProvinsi, selectedKabupaten);
 
-                ViewPager2 viewPager = requireActivity().findViewById(R.id.viewPager);
-                viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
-            } else {
-                Toast.makeText(getContext(), "Anda belum melakukan Login", Toast.LENGTH_SHORT).show();
+                    ViewPager2 viewPager = requireActivity().findViewById(R.id.viewPager);
+                    viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
+                } else {
+                    Toast.makeText(getContext(), "Anda belum melakukan Login", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -323,5 +329,45 @@ public class thirdRegister extends Fragment {
         editor.putString("selectprovinsi", provinsi);
         editor.putString("selectkabupaten", kabupaten);
         editor.apply();
+    }
+
+    private boolean validateFieldsAndRegister() {
+        provinsiLayout.setError(null);
+        cityLayout.setError(null);
+        kacamatanLayout.setError(null);
+        kotaTVLayout.setError(null);
+
+        // Check for null references before accessing the spinners and EditTexts
+        if (provinsiSpinner == null || kabupatenkotaSpiner == null || kacamatanEdt == null || kelurahanEdt == null) {
+            Toast.makeText(getContext(), "Please make sure all fields are properly initialized.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        String selectedProvinsi = provinsiSpinner.getSelectedItem() != null ? provinsiSpinner.getSelectedItem().toString() : "";
+        String selectedKabupatenKota = kabupatenkotaSpiner.getSelectedItem() != null ? kabupatenkotaSpiner.getSelectedItem().toString() : "";
+        String kacamatanText = this.kacamatanEdt.getText().toString();
+        String kelurahanText = this.kelurahanEdt.getText().toString();
+
+        boolean isValid = true;
+
+        if (selectedProvinsi.equals("Pilih Provinsi")) {
+            provinsiLayout.setError("Pilih Provinsi anda");
+            isValid = false;
+        }
+
+        if (selectedKabupatenKota.equals("Pilih Kabupaten/Kota")) {
+            cityLayout.setError("Pilih Kabupaten/Kota anda");
+            isValid = false;
+        }
+
+        if (TextUtils.isEmpty(kacamatanText)) {
+            kacamatanLayout.setError("Masukan Kacamatan anda");
+        }
+
+        if (TextUtils.isEmpty(kelurahanText)) {
+            kotaTVLayout.setError("Masukan Kelurahan/Desa anda");
+        }
+
+        return isValid;
     }
 }
