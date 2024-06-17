@@ -1,11 +1,13 @@
 package com.example.corruptionperceptionindex.src.register;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -144,6 +146,32 @@ public class secondRegister extends Fragment {
         datePickerDialog.show();
     }
 
+//    private void validateFieldsAndRegister() {
+//        jenisklaminLayout.setError(null);
+//        bornLayout.setError(null);
+//        pendidikanLayout.setError(null);
+//        pekerjaanLayout.setError(null);
+//
+//        String selectedGender = genderSpinner.getSelectedItem().toString();
+//        String selectedDate = dateEditText.getText().toString();
+//        String selectedEducation = educationSpiner.getSelectedItem().toString();
+//        String selectedOccupation = occupationSpinner.getSelectedItem().toString();
+//
+//        if (selectedGender.equals("Pilih Jenis Kelamin")) {
+//            jenisklaminLayout.setError("Pilih jenis kelamin anda");
+//        } else if (TextUtils.isEmpty(selectedDate) || selectedDate.equals("DD/MM/YY")) {
+//            bornLayout.setError("Pilih tanggal lahir anda");
+//        } else if (selectedEducation.equals("Pilih Pendidikan")) {
+//            pendidikanLayout.setError("Pilih pendidikan anda");
+//        } else if (selectedOccupation.equals("Pilih Pekerjaan")) {
+//            pekerjaanLayout.setError("Pilih pekerjaan anda");
+//        } else {
+//            saveData(selectedGender, selectedDate, selectedEducation, selectedOccupation);
+//            new RegisterUserTask().execute();
+//        }
+//    }
+
+
     private void validateFieldsAndRegister() {
         jenisklaminLayout.setError(null);
         bornLayout.setError(null);
@@ -164,8 +192,21 @@ public class secondRegister extends Fragment {
         } else if (selectedOccupation.equals("Pilih Pekerjaan")) {
             pekerjaanLayout.setError("Pilih pekerjaan anda");
         } else {
-            saveData(selectedGender, selectedDate, selectedEducation, selectedOccupation);
-            new RegisterUserTask().execute();
+            // Show ProgressDialog
+            final ProgressDialog progressDialog = new ProgressDialog(requireContext());
+            progressDialog.setMessage("Harap tunggu");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+
+            // Dismiss ProgressDialog after 4 seconds
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    progressDialog.dismiss();
+                    saveData(selectedGender, selectedDate, selectedEducation, selectedOccupation);
+                    new RegisterUserTask().execute();
+                }
+            }, 4000); // 4000 milliseconds = 4 seconds
         }
     }
 

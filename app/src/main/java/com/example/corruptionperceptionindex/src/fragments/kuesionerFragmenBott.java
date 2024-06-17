@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -55,6 +56,7 @@ public class kuesionerFragmenBott extends Fragment {
     EditText tahunEdt;
     private int selectedCityId;
     com.google.android.material.textfield.TextInputLayout provinsiLayout, kabupatenkotaLayout;
+    TextView kotaDaerahTV;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -66,6 +68,12 @@ public class kuesionerFragmenBott extends Fragment {
         tahunEdt = view.findViewById(R.id.tahun);
         provinsiLayout = view.findViewById(R.id.provinsiLayout);
         kabupatenkotaLayout = view.findViewById(R.id.kabupatenkotaLayout);
+        kotaDaerahTV = view.findViewById(R.id.daerahyangdiIsi);
+
+        provinsiSpinner.setVisibility(View.GONE);
+        kabupatenkotaSpiner.setVisibility(View.GONE);
+        kabupatenkotaLayout.setVisibility(View.GONE);
+        provinsiLayout.setVisibility(View.GONE);
 
         // Mengisi tahunEdt dengan tahun saat ini
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
@@ -94,13 +102,13 @@ public class kuesionerFragmenBott extends Fragment {
             public void onClick(View v) {
                 Intent startQuestionaire = new Intent(getActivity(), dimenssionQuestion.class);
 
-                String selectedProvinsi = (String) provinsiSpinner.getSelectedItem();
-                String selectedKabupaten = (String) kabupatenkotaSpiner.getSelectedItem();
+//                String selectedProvinsi = (String) provinsiSpinner.getSelectedItem();
+//                String selectedKabupaten = (String) kabupatenkotaSpiner.getSelectedItem();
                 String tahun = tahunEdt.getText().toString();
-                saveData(selectedProvinsi, selectedKabupaten, tahun);
-
-                // Log data yang akan disimpan
-                Log.d("kuesionerFragmenBott", "Saving data - Provinsi: " + selectedProvinsi + ", Kabupaten: " + selectedKabupaten + ", Tahun: " + tahun);
+                saveData(tahun);
+//
+//                // Log data yang akan disimpan
+//                Log.d("kuesionerFragmenBott", "Saving data - Provinsi: " + selectedProvinsi + ", Kabupaten: " + selectedKabupaten + ", Tahun: " + tahun);
 
                 startActivity(startQuestionaire);
             }
@@ -211,6 +219,8 @@ public class kuesionerFragmenBott extends Fragment {
             ArrayAdapter<String> profAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, provincesList);
             profAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             provinsiSpinner.setAdapter(profAdapter);
+
+            loadSavedData();
         }
     }
 
@@ -264,17 +274,30 @@ public class kuesionerFragmenBott extends Fragment {
             ArrayAdapter<String> kabAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, citiesList);
             kabAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             kabupatenkotaSpiner.setAdapter(kabAdapter);
+
+            loadSavedData();
         }
     }
 
-    private void saveData(String provinsi, String kabupaten, String tahun) {
+    private void saveData(String tahun) {
         SharedPreferences prefs = requireActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("selectprovinsi", provinsi);
-        editor.putString("selectkabupaten", kabupaten);
         editor.putString("tahun", tahun);
         editor.apply();
     }
+
+
+    private void loadSavedData() {
+        SharedPreferences prefs = requireActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+        String savedProvinsi = prefs.getString("selectprovinsi", "");
+        String savedKabupaten = prefs.getString("selectkabupaten", "");
+
+        kotaDaerahTV.setText("Provinsi yang dinilai : "+"\n"+ savedProvinsi + " - " + savedKabupaten);
+
+    }
+
+
+
 
 //    private void validateFieldsAndRegister() {
 //        provinsiLayout.setError(null);

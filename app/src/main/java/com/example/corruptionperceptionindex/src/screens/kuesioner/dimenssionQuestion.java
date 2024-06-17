@@ -3,7 +3,7 @@ package com.example.corruptionperceptionindex.src.screens.kuesioner;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;  // Tambahkan ini
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -62,6 +62,8 @@ public class dimenssionQuestion extends AppCompatActivity {
 
         clickCounter = sharedPreferences.getInt(COUNTER_PREF, 0);
 
+        titleDimenssion.setVisibility(View.GONE);
+
         // Membaca data dari SharedPreferences
         SharedPreferences prefs = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
         String tahun = prefs.getString("tahun", "");
@@ -72,14 +74,18 @@ public class dimenssionQuestion extends AppCompatActivity {
         Log.d("dimenssionQuestion", "Loaded data - Tahun: " + tahun + ", Provinsi: " + provinsi + ", Kabupaten: " + kabupaten);
 
         // Mengisi namatahundaerahTV
-        namatahundaerahTV.setText(tahun + " - " + provinsi + " - " + kabupaten);
+        namatahundaerahTV.setText(tahun + " - " + provinsi + "\n" + kabupaten);
 
         prevButton.setVisibility(View.GONE); // Initially hide the prevButton
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showAnimatedDialog();
+                if (fragment != null) {
+                    fragment.nextIndicator(); // This will handle the validation and alert
+
+                    prevButton.setVisibility(View.VISIBLE); // Show prevButton after navigating to the next indicator
+                }
             }
         });
 
@@ -102,23 +108,6 @@ public class dimenssionQuestion extends AppCompatActivity {
 
         Koneksi koneksi = new Koneksi();
         String apiUrl = koneksi.connquestions();
-
-        new FetchDimensionsTask(apiUrl, new FetchDimensionsTask.OnDimensionsFetchedListener() {
-            @Override
-            public void onDimensionsFetched(List<Dimension> dimensionsList) {
-                dimensions = dimensionsList;
-                if (!dimensions.isEmpty()) {
-                    loadDimension(dimensions.get(currentDimensionIndex));
-                }
-            }
-        }).execute();
-
-        if (savedInstanceState == null) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            fragment = new dimenssionFirst();
-            transaction.replace(R.id.fragment_container, fragment);
-            transaction.commit();
-        }
 
         new FetchDimensionsTask(apiUrl, new FetchDimensionsTask.OnDimensionsFetchedListener() {
             @Override
@@ -159,7 +148,7 @@ public class dimenssionQuestion extends AppCompatActivity {
         progressPresentation.setText(progress + "%");
     }
 
-    private void showAnimatedDialog() {
+    public void showAnimatedDialog() {
         // Inflate the dialog layout
         LayoutInflater inflater = getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_with_video_animation, null);
@@ -173,10 +162,10 @@ public class dimenssionQuestion extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(dialogView)
                 .setPositiveButton("Lanjutkan", (dialog, which) -> {
-                    if (fragment != null) {
-                        fragment.nextIndicator(); // Proceed to the next indicator
-                        prevButton.setVisibility(View.VISIBLE); // Show prevButton after navigating to the next indicator
-                    }
+//                    if (fragment != null) {
+//                        fragment.nextIndicator(); // Proceed to the next indicator
+//                        prevButton.setVisibility(View.VISIBLE); // Show prevButton after navigating to the next indicator
+//                    }
                 })
                 .create()
                 .show();
@@ -253,5 +242,14 @@ public class dimenssionQuestion extends AppCompatActivity {
                 question.setSelectedAnswer(savedAnswer);
             }
         }
+    }
+
+    public void showIncompleteQuestionsAlert() {
+        new AlertDialog.Builder(this)
+                .setTitle("Peringatan")
+                .setMessage("Anda belum menyelesaikannya")
+                .setPositiveButton("OK", null)
+                .create()
+                .show();
     }
 }

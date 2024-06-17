@@ -88,4 +88,14 @@ public class QuestionAdapterFirst extends RecyclerView.Adapter<QuestionAdapterFi
             });
         }
     }
+
+    public boolean areAllQuestionsAnswered() {
+        for (Question question : questions) {
+            if (question.getSelectedAnswer() == -1) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
