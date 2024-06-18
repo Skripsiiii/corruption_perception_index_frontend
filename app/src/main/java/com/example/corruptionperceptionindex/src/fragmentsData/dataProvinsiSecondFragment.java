@@ -97,7 +97,7 @@ public class dataProvinsiSecondFragment extends Fragment {
 //        String cityDataUrl = "https://6e49-2404-8000-1003-61d1-39cf-8c86-8a14-b8e8.ngrok-free.app/api/cityData/" + provinceId;
         String cityDataUrl = new Koneksi().connKotaDataDimension() + provinceId;
 
-        new FetchCityDataTask(cityData -> {
+        new FetchCityDataTask(getContext(), cityData -> {
             dataProvinsiSecondAdapter adapter = new dataProvinsiSecondAdapter(cityData, kabupatenKota -> {
                 // Load the third fragment and pass the data
                 dataProvinsiThirdFragment thirdFragment = new dataProvinsiThirdFragment();

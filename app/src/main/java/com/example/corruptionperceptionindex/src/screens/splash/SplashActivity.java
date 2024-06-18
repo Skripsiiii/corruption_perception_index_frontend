@@ -20,9 +20,9 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 SharedPreferences prefs = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
-                boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+                String token = prefs.getString("token", null);
 
-                if (isLoggedIn) {
+                if (token != null) {
                     startActivity(new Intent(SplashActivity.this, MainMenu.class));
                 } else {
                     startActivity(new Intent(SplashActivity.this, IntroActivity.class));

@@ -71,6 +71,11 @@ public class secondRegister extends Fragment {
         isipassword = view.findViewById(R.id.tvpassword);
         isiconfirmpassword = view.findViewById(R.id.tvconfirmpassword);
 
+        isinama.setVisibility(View.GONE);
+        isiemail.setVisibility(View.GONE);
+        isipassword.setVisibility(View.GONE);
+        isiconfirmpassword.setVisibility(View.GONE);
+
         genderSpinner = view.findViewById(R.id.genderSpiner);
         dateEditText = view.findViewById(R.id.dateEditText);
         educationSpiner = view.findViewById(R.id.educationSpiner);

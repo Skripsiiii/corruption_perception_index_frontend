@@ -1,15 +1,19 @@
 package com.example.corruptionperceptionindex.src.fragmentsData;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -36,6 +40,7 @@ public class dataProvinsiFourthFragment extends Fragment {
     ProgressBar progressBarProvinsi, progressBarKabupatenKota, progressBardimensi;
     View statusBarProvinsi, statusBarKabupatenKota;
     private RecyclerView recyclerView;
+    private String token;
 
     @Nullable
     @Override
@@ -86,6 +91,13 @@ public class dataProvinsiFourthFragment extends Fragment {
             setStatus(indexResultDimensi, progressBardimensi);
 
             fetchIndicatorData(dimensionId);
+
+            SharedPreferences prefs = requireContext().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+            token = prefs.getString("token", null);
+            Log.d("token", token);
+            if (token == null) {
+                Toast.makeText(getContext(), "Anda belum melakukan Login", Toast.LENGTH_SHORT).show();
+            }
         }
 
         return view;
@@ -107,6 +119,7 @@ public class dataProvinsiFourthFragment extends Fragment {
                 URL url = new URL(urlString);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
+                connection.setRequestProperty("Authorization", "Bearer " + token);
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 StringBuilder response = new StringBuilder();

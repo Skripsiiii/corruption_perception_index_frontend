@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     tools:context=".src.fragments.kuesionerFragment"
     android:layout_marginHorizontal="20dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
 
     <TextView
         android:id="@+id/belumIsi"

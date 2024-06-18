@@ -54,7 +54,7 @@ public class fourthActivity extends Fragment implements FetchQuestionsTask.Fetch
         question2Spinner.setAdapter(adapter);
         question3Spinner.setAdapter(adapter);
 
-        new FetchQuestionsTask(this).execute();
+        new FetchQuestionsTask(requireContext(), this).execute();
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override

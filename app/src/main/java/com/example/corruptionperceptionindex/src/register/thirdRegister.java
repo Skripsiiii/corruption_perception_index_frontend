@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +51,7 @@ public class thirdRegister extends Fragment {
     private HashMap<String, Integer> cityIdMap = new HashMap<>();
     private int userId;
     private int selectedCityId;
-
+    private String token;
     com.google.android.material.textfield.TextInputLayout provinsiLayout, cityLayout, kacamatanLayout, kotaTVLayout;
 
     @Nullable
@@ -59,6 +60,7 @@ public class thirdRegister extends Fragment {
         View view = inflater.inflate(R.layout.activity_third_register, container, false);
 
         idUser = view.findViewById(R.id.userid);
+        idUser.setVisibility(View.GONE);
 
         profileLayout = view.findViewById(R.id.imageLayout);
         profileLayout.setImageResource(R.mipmap.profile3);
@@ -75,6 +77,15 @@ public class thirdRegister extends Fragment {
         kotaTVLayout = view.findViewById(R.id.kotaLayout);
 
         saveButton = view.findViewById(R.id.btn_save);
+
+        SharedPreferences prefs = requireActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+        token = prefs.getString("token", null);
+        if (token != null) {
+            Log.d("token", token);
+        } else {
+            Log.d("token", "Token is null");
+            Toast.makeText(getContext(), "Anda belum melakukan Login", Toast.LENGTH_SHORT).show();
+        }
 
         // Fetch provinces data
         new FetchProvincesTask().execute();
@@ -110,8 +121,8 @@ public class thirdRegister extends Fragment {
 
         saveButton.setOnClickListener(v -> {
             if (validateFieldsAndRegister()) {
-                if (selectedCityId != 0 && userId != 0) {
-                    new AddDomicileTask().execute(userId, selectedCityId);
+                if (selectedCityId != 0 && token != null) {
+                    new AddDomicileTask().execute(selectedCityId);
 
                     String selectedProvinsi = (String) provinsiSpinner.getSelectedItem();
                     String selectedKabupaten = (String) kabupatenkotaSpiner.getSelectedItem();
@@ -126,10 +137,10 @@ public class thirdRegister extends Fragment {
         });
 
         // Get the user ID from the arguments
-        if (getArguments() != null) {
-            userId = getArguments().getInt("USER_ID", 0);
-            idUser.setText(String.valueOf(userId)); // Display the user ID
-        }
+//        if (getArguments() != null) {
+//            userId = getArguments().getInt("USER_ID", 0);
+//            idUser.setText(String.valueOf(userId)); // Display the user ID
+//        }
 
         return view;
     }
@@ -256,8 +267,8 @@ public class thirdRegister extends Fragment {
     private class AddDomicileTask extends AsyncTask<Integer, Void, String> {
         @Override
         protected String doInBackground(Integer... params) {
-            int userId = params[0];
-            int cityId = params[1];
+//            int userId = params[0];
+            int cityId = params[0];
 
             HttpURLConnection urlConnection = null;
             try {
@@ -267,11 +278,12 @@ public class thirdRegister extends Fragment {
                 urlConnection.setRequestMethod("POST");
                 urlConnection.setRequestProperty("Content-Type", "application/json; utf-8");
                 urlConnection.setRequestProperty("Accept", "application/json");
+                urlConnection.setRequestProperty("Authorization", "Bearer " + token);
                 urlConnection.setDoOutput(true);
 
                 // Create the JSON payload
                 JSONObject jsonParam = new JSONObject();
-                jsonParam.put("userId", userId);
+//                jsonParam.put("userId", userId);
                 jsonParam.put("cityId", cityId);
 
                 // Send the JSON payload
@@ -309,7 +321,7 @@ public class thirdRegister extends Fragment {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                return "Exception: " + e.getMessage();
+                return "Status: " + e.getMessage();
             } finally {
                 if (urlConnection != null) {
                     urlConnection.disconnect();

@@ -242,7 +242,7 @@ public class LoginActivity extends AppCompatActivity {
     private void checkPassword(String password) {
         boolean hasUpperCase = !password.equals(password.toLowerCase());
         boolean hasLowerCase = !password.equals(password.toUpperCase());
-        boolean hasDigit = password.matches(".\\d.");
+        boolean hasDigit = password.matches(".*\\d.*");
 
         if (hasUpperCase) {
             unchecked1.setVisibility(View.GONE);
