@@ -136,7 +136,7 @@
         android:layout_height="50dp"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="5dp"
-        android:background="@color/primary_500"
+        android:background="@drawable/backgroundhome"
         android:backgroundTint="@color/gray"
         android:text="Berikutnya"
         android:textColor="@color/white" />

@@ -98,20 +98,25 @@
                 android:layout_marginTop="10dp"
                 android:text="Kata Sandi Baru"/>
 
-            <EditText
-                android:id="@+id/newPassEditText"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/newPassLayout"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_weight="0"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/rounded_background"
-                android:drawablePadding="10dp"
-                android:ems="10"
-                android:hint="kata sandi baru"
-                android:inputType="textEmailAddress"
-                android:padding="10dp"
-                android:textColorHint="@color/gray"
-                android:textSize="12dp" />
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/newPassEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="0"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/rounded_background"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="kata sandi baru"
+                    android:inputType="textEmailAddress"
+                    android:padding="10dp"
+                    android:textColorHint="@color/gray"
+                    android:textSize="12dp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -119,20 +124,25 @@
                 android:layout_marginTop="10dp"
                 android:text="Konfirmasi Kata Sandi"/>
 
-            <EditText
-                android:id="@+id/cinfirmPassEditText"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/confirmPassLayout"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_weight="0"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/rounded_background"
-                android:drawablePadding="10dp"
-                android:ems="10"
-                android:hint="kata sandi baru"
-                android:inputType="textEmailAddress"
-                android:padding="10dp"
-                android:textColorHint="@color/gray"
-                android:textSize="12dp" />
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/cinfirmPassEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="0"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/rounded_background"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="kata sandi baru"
+                    android:inputType="textEmailAddress"
+                    android:padding="10dp"
+                    android:textColorHint="@color/gray"
+                    android:textSize="12dp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
         </LinearLayout>
@@ -147,7 +157,7 @@
         android:layout_weight="1" />
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btnSavePass"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginHorizontal="35dp"

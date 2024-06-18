@@ -3,12 +3,14 @@ package com.example.corruptionperceptionindex.src.screens.login;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -102,6 +104,7 @@ public class LoginActivity extends AppCompatActivity {
     private class LoginTask extends AsyncTask<String, Void, String> {
 
         private int userId;
+        private String token;
 
         @Override
         protected String doInBackground(String... params) {
@@ -145,6 +148,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (jsonResponse.getBoolean("success")) {
                         JSONObject userData = jsonResponse.getJSONObject("data").getJSONObject("user");
                         userId = userData.getInt("id");
+                        token = jsonResponse.getJSONObject("data").getString("token");
                         return "Login Berhasil";
                     } else {
                         return jsonResponse.getString("message");
@@ -178,9 +182,12 @@ public class LoginActivity extends AppCompatActivity {
 //            }
 
             if (result.equals("Login Berhasil")) {
+                saveData(token);
                 SharedPreferences prefs = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putBoolean("isLoggedIn", true);
+                editor.putString("token", token);
+                Log.d("TOKEN", token);
                 editor.apply();
 
                 // Pass the user ID and step to the RegisterFragment
@@ -235,7 +242,7 @@ public class LoginActivity extends AppCompatActivity {
     private void checkPassword(String password) {
         boolean hasUpperCase = !password.equals(password.toLowerCase());
         boolean hasLowerCase = !password.equals(password.toUpperCase());
-        boolean hasDigit = password.matches(".*\\d.*");
+        boolean hasDigit = password.matches(".\\d.");
 
         if (hasUpperCase) {
             unchecked1.setVisibility(View.GONE);
@@ -260,5 +267,12 @@ public class LoginActivity extends AppCompatActivity {
             unchecked3.setVisibility(View.VISIBLE);
             checked3.setVisibility(View.GONE);
         }
+    }
+    private void saveData(String token){
+        SharedPreferences prefs = LoginActivity.this.getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("token", token);
+        editor.apply();
+
     }
 }
