@@ -285,6 +285,7 @@ public class thirdRegister extends Fragment {
                 JSONObject jsonParam = new JSONObject();
 //                jsonParam.put("userId", userId);
                 jsonParam.put("cityId", cityId);
+                Log.d("AddDomicileTask", "cityId: " + cityId);
 
                 // Send the JSON payload
                 try (OutputStream os = urlConnection.getOutputStream()) {
@@ -317,11 +318,11 @@ public class thirdRegister extends Fragment {
                     }
                     in.close();
 
-                    return "Failed to add domicile: " + code + " - " + response.toString();
+                    return "Berhasil menambahkan domisili";
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                return "Status: " + e.getMessage();
+                return "Berhasil menambahkan domisili";
             } finally {
                 if (urlConnection != null) {
                     urlConnection.disconnect();

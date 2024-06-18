@@ -151,32 +151,6 @@ public class secondRegister extends Fragment {
         datePickerDialog.show();
     }
 
-//    private void validateFieldsAndRegister() {
-//        jenisklaminLayout.setError(null);
-//        bornLayout.setError(null);
-//        pendidikanLayout.setError(null);
-//        pekerjaanLayout.setError(null);
-//
-//        String selectedGender = genderSpinner.getSelectedItem().toString();
-//        String selectedDate = dateEditText.getText().toString();
-//        String selectedEducation = educationSpiner.getSelectedItem().toString();
-//        String selectedOccupation = occupationSpinner.getSelectedItem().toString();
-//
-//        if (selectedGender.equals("Pilih Jenis Kelamin")) {
-//            jenisklaminLayout.setError("Pilih jenis kelamin anda");
-//        } else if (TextUtils.isEmpty(selectedDate) || selectedDate.equals("DD/MM/YY")) {
-//            bornLayout.setError("Pilih tanggal lahir anda");
-//        } else if (selectedEducation.equals("Pilih Pendidikan")) {
-//            pendidikanLayout.setError("Pilih pendidikan anda");
-//        } else if (selectedOccupation.equals("Pilih Pekerjaan")) {
-//            pekerjaanLayout.setError("Pilih pekerjaan anda");
-//        } else {
-//            saveData(selectedGender, selectedDate, selectedEducation, selectedOccupation);
-//            new RegisterUserTask().execute();
-//        }
-//    }
-
-
     private void validateFieldsAndRegister() {
         jenisklaminLayout.setError(null);
         bornLayout.setError(null);
@@ -203,15 +177,8 @@ public class secondRegister extends Fragment {
             progressDialog.setCancelable(false);
             progressDialog.show();
 
-            // Dismiss ProgressDialog after 4 seconds
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    progressDialog.dismiss();
-                    saveData(selectedGender, selectedDate, selectedEducation, selectedOccupation);
-                    new RegisterUserTask().execute();
-                }
-            }, 6000); // 4000 milliseconds = 4 seconds
+            saveData(selectedGender, selectedDate, selectedEducation, selectedOccupation);
+            new RegisterUserTask(progressDialog).execute();
         }
     }
 
@@ -261,12 +228,6 @@ public class secondRegister extends Fragment {
             educationSpiner.setAdapter(educationAdapter);
 
             // Load selected item from SharedPreferences if exists
-//            SharedPreferences prefs = requireActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
-//            String selectedEducation = prefs.getString("selectedEducation", "");
-//            if (!selectedEducation.isEmpty()) {
-//                int spinnerPosition = educationAdapter.getPosition(selectedEducation);
-//                educationSpiner.setSelection(spinnerPosition);
-//            }
         }
     }
 
@@ -314,17 +275,16 @@ public class secondRegister extends Fragment {
             ArrayAdapter<String> occupationAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, occupationList);
             occupationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             occupationSpinner.setAdapter(occupationAdapter);
-
-//            SharedPreferences prefs = requireActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
-//            String selectedOccupation = prefs.getString("selectedOccupation", "");
-//            if (!selectedOccupation.isEmpty()) {
-//                int spinnerPosition = occupationAdapter.getPosition(selectedOccupation);
-//                occupationSpinner.setSelection(spinnerPosition);
-//            }
         }
     }
 
     private class RegisterUserTask extends AsyncTask<Void, Void, String> {
+        private ProgressDialog progressDialog;
+
+        public RegisterUserTask(ProgressDialog progressDialog) {
+            this.progressDialog = progressDialog;
+        }
+
         @Override
         protected String doInBackground(Void... voids) {
             String response = "";
@@ -377,13 +337,14 @@ public class secondRegister extends Fragment {
 
         @Override
         protected void onPostExecute(String response) {
+            super.onPostExecute(response);
+            progressDialog.dismiss();
             Toast.makeText(getActivity(), "Registration successful", Toast.LENGTH_SHORT).show();
             // Prepare to send data to aktivasiEmail activity
             Intent aktivasiActivity = new Intent(getContext(), aktivasiEmail.class);
             aktivasiActivity.putExtra("userName", isinama.getText().toString());
             startActivity(aktivasiActivity);
         }
-
     }
 
     private void saveData(String gender, String date, String education, String occupation) {

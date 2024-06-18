@@ -1,5 +1,6 @@
 package com.example.corruptionperceptionindex.src.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,10 +85,14 @@ public class QuestionAdapterFirst extends RecyclerView.Adapter<QuestionAdapterFi
                         }
                     }
                     question.setSelectedAnswer(selectedAnswer);
+
+                    // Log the selected value
+                    Log.d("QuestionAdapterFirst", "ini yang dipilih" + question.getId() + ": " + (selectedAnswer + 1));
                 }
             });
         }
     }
+
 
     public boolean areAllQuestionsAnswered() {
         for (Question question : questions) {

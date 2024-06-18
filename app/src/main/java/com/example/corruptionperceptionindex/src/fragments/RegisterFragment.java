@@ -43,7 +43,7 @@ public class RegisterFragment extends AppCompatActivity {
         ViewPager2 viewPager = findViewById(R.id.viewPager);
         TabLayout tabLayout = findViewById(R.id.tabLayout);
 
-        RegistrationPagerAdapter adapter = new RegistrationPagerAdapter(getSupportFragmentManager(), getLifecycle(), userId);
+        RegistrationPagerAdapter adapter = new RegistrationPagerAdapter(getSupportFragmentManager(), getLifecycle(), userId, this); // Pass the Context here
         viewPager.setAdapter(adapter);
 
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
