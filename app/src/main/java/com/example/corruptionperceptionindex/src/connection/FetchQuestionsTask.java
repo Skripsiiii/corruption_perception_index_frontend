@@ -1,6 +1,10 @@
 package com.example.corruptionperceptionindex.src.connection;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -14,9 +18,24 @@ import java.util.List;
 
 public class FetchQuestionsTask extends AsyncTask<Void, Void, List<String>> {
     private final FetchQuestionsCallback callback;
+    private final Context context;
+    private String token;
 
-    public FetchQuestionsTask(FetchQuestionsCallback callback) {
+    public FetchQuestionsTask(Context context, FetchQuestionsCallback callback) {
+        this.context = context;
         this.callback = callback;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        SharedPreferences prefs = context.getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+        token = prefs.getString("token", null);
+        Log.d("token", token);
+        if (token == null) {
+            Toast.makeText(context, "Anda belum melakukan Login", Toast.LENGTH_SHORT).show();
+            cancel(true);
+        }
     }
 
     @Override

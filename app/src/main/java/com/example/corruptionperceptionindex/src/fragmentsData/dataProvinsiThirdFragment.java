@@ -81,7 +81,7 @@ public class dataProvinsiThirdFragment extends Fragment {
     private void fetchDimensionData(int cityId) {
         String dimensionDataUrl = new Koneksi().connDataDimension() + cityId;
 
-        new FetchDimensionDataTask(dimensionDataList -> {
+        new FetchDimensionDataTask(getContext(), dimensionDataList -> {
             dataProvinsiThirdAdapter adapter = new dataProvinsiThirdAdapter(dimensionDataList);
             adapter.setOnNextButtonClickListener(selectedDimensionData -> {
                 dataProvinsiFourthFragment fourthFragment = new dataProvinsiFourthFragment();

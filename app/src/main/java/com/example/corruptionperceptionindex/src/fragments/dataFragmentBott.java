@@ -217,7 +217,7 @@ public class dataFragmentBott extends Fragment {
     }
 
     private void fetchProvinceIndexData() {
-        new FetchProvinceIndexTask(averageIndexResult -> {
+        new FetchProvinceIndexTask(getContext(), averageIndexResult -> {
             scoreCPI.setText(String.format("%.2f", averageIndexResult));
             setProgressBarColorAndStatus(averageIndexResult);
         }).execute();

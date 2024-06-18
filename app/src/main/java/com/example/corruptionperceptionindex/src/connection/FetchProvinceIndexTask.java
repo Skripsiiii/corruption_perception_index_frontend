@@ -1,7 +1,11 @@
 package com.example.corruptionperceptionindex.src.connection;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.BufferedReader;
@@ -12,13 +16,29 @@ import java.net.URL;
 public class FetchProvinceIndexTask extends AsyncTask<Void, Void, Double> {
 
     private final OnFetchCompleteListener listener;
+    private final Context context;
+    private String token;
 
     public interface OnFetchCompleteListener {
         void onFetchComplete(double averageIndexResult);
     }
 
-    public FetchProvinceIndexTask(OnFetchCompleteListener listener) {
+    public FetchProvinceIndexTask(Context context, OnFetchCompleteListener listener) {
+        this.context = context;
         this.listener = listener;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        SharedPreferences prefs = context.getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+        token = prefs.getString("token", null);
+        if (token != null) {
+            Log.d("token", token);
+        } else {
+            Log.d("token", "Token is null");
+            Toast.makeText(context, "Anda belum melakukan Login", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -29,6 +49,7 @@ public class FetchProvinceIndexTask extends AsyncTask<Void, Void, Double> {
             URL url = new URL(new Koneksi().connDataProvince());
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
+            connection.setRequestProperty("Authorization", "Bearer " + token);
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuilder response = new StringBuilder();

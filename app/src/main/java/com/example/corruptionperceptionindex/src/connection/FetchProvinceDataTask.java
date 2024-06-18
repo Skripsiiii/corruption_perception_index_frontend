@@ -1,7 +1,10 @@
 package com.example.corruptionperceptionindex.src.connection;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.corruptionperceptionindex.src.model.ProvinceData;
 
@@ -19,13 +22,28 @@ import java.util.List;
 public class FetchProvinceDataTask extends AsyncTask<String, Void, List<ProvinceData>> {
 
     private OnProvinceDataFetchedListener listener;
+    private Context context;
+    private String token;
 
     public interface OnProvinceDataFetchedListener {
         void onProvinceDataFetched(List<ProvinceData> provinceData);
     }
 
-    public FetchProvinceDataTask(OnProvinceDataFetchedListener listener) {
+    public FetchProvinceDataTask(Context context, OnProvinceDataFetchedListener listener) {
+        this.context = context;
         this.listener = listener;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        SharedPreferences prefs = context.getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+        token = prefs.getString("token", null);
+        Log.d("token", token);
+        if (token == null) {
+            Toast.makeText(context, "Anda belum melakukan Login", Toast.LENGTH_SHORT).show();
+            cancel(true);
+        }
     }
 
     @Override
@@ -37,6 +55,7 @@ public class FetchProvinceDataTask extends AsyncTask<String, Void, List<Province
             URL url = new URL(urls[0]);
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
+            urlConnection.setRequestProperty("Authorization", "Bearer " + token);
             InputStream inputStream = urlConnection.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             StringBuilder result = new StringBuilder();

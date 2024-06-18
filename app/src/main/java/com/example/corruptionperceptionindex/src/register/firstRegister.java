@@ -16,8 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.corruptionperceptionindex.R;
+import com.example.corruptionperceptionindex.src.components.ValidateEmailPassword;
 import com.example.corruptionperceptionindex.src.viewmodel.RegistrationViewModel;
 
 import java.util.Objects;
@@ -78,6 +80,7 @@ public class firstRegister extends Fragment {
                 String password = Objects.requireNonNull(passwordEditText.getText()).toString();
                 String email = Objects.requireNonNull(emailEditText.getText()).toString();
                 String confirmPassword = Objects.requireNonNull(confirmpasswordEditText.getText()).toString();
+
                 if (TextUtils.isEmpty(username)) {
                     userLayout.setError("Username tidak boleh kosong");
                 } else if (TextUtils.isEmpty(email)) {
@@ -87,40 +90,33 @@ public class firstRegister extends Fragment {
                 } else if (TextUtils.isEmpty(confirmPassword)) {
                     confirmPasswordLayout.setError("Password tidak boleh kosong");
                 } else {
-                    // Save data to ViewModel
-                    registrationViewModel.setName(username);
-                    registrationViewModel.setEmail(email);
-                    registrationViewModel.setPassword(password);
-                    registrationViewModel.setPasswordConfirmation(confirmPassword);
+                    if (!ValidateEmailPassword.isValidEmail(email)) {
+                        Toast.makeText(requireActivity(), "Tolong masukkan email anda dengan format yang valid.", Toast.LENGTH_SHORT).show();
+                    } else if (!password.equals(confirmPassword)) {
+                        Toast.makeText(requireActivity(), "Konfirmasi kata sandi tidak sesuai dengan kata sandi", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // Save data to ViewModel
+                        registrationViewModel.setName(username);
+                        registrationViewModel.setEmail(email);
+                        registrationViewModel.setPassword(password);
+                        registrationViewModel.setPasswordConfirmation(confirmPassword);
 
-                    // Save data to SharedPreferences
-//                    saveData(username, email, password, confirmPassword);
-//
-////                    Intent tested = new Intent(getActivity(), MainMenu.class);
-////                    startActivity(tested);
-//
-//                    // Navigate to the next page
-//                    ViewPager2 viewPager = requireActivity().findViewById(R.id.viewPager);
-//                    viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
+                        // Save data to SharedPreferences
+                        saveData(username, email, password, confirmPassword);
 
+                        SharedPreferences prefs = requireActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putBoolean("isLoggedIn", true);
+                        editor.apply();
 
-                    //sharedpreferences
-                    saveData(username, email, password, confirmPassword);
-
-                    SharedPreferences prefs = requireActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = prefs.edit();
-                    editor.putBoolean("isLoggedIn", true);
-                    editor.apply();
-
-// Navigate to the next page
-                    ViewPager2 viewPager = requireActivity().findViewById(R.id.viewPager);
-                    viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
-
-
-
+                        // Navigate to the next page
+                        ViewPager2 viewPager = requireActivity().findViewById(R.id.viewPager);
+                        viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
+                    }
                 }
             }
         });
+
 
         passwordEditText.addTextChangedListener(new TextWatcher() {
             @Override

@@ -41,7 +41,7 @@ public class dataProvinsiFirstFragment extends Fragment {
         Koneksi koneksi = new Koneksi();
         String apiUrl = koneksi.connDataProvince();
 
-        new FetchProvinceDataTask(new FetchProvinceDataTask.OnProvinceDataFetchedListener() {
+        new FetchProvinceDataTask(getContext(), new FetchProvinceDataTask.OnProvinceDataFetchedListener() {
             @Override
             public void onProvinceDataFetched(List<ProvinceData> provinceData) {
                 adapter = new dataProvinsiAdapter(provinceData);

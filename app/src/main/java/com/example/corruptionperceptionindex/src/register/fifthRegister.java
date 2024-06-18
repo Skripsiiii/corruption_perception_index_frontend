@@ -53,7 +53,7 @@ public class fifthRegister extends Fragment implements FetchQuestionsTask.FetchQ
         question5Spinner.setAdapter(adapter);
         question6Spinner.setAdapter(adapter);
 
-        new FetchQuestionsTask(this).execute();
+        new FetchQuestionsTask(requireContext(), this).execute();
 
         // Get the ViewPager2 instance from the parent activity
         viewPager = getActivity().findViewById(R.id.viewPager);

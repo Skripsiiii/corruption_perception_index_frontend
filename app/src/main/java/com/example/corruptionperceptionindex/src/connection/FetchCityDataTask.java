@@ -1,7 +1,10 @@
 package com.example.corruptionperceptionindex.src.connection;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.corruptionperceptionindex.src.model.CityData;
 
@@ -19,13 +22,28 @@ import java.util.List;
 public class FetchCityDataTask extends AsyncTask<String, Void, List<CityData>> {
 
     private OnCityDataFetchedListener listener;
+    private Context context;
+    private String token;
 
     public interface OnCityDataFetchedListener {
         void onCityDataFetched(List<CityData> cityData);
     }
 
-    public FetchCityDataTask(OnCityDataFetchedListener listener) {
+    public FetchCityDataTask(Context context, OnCityDataFetchedListener listener) {
+        this.context = context;
         this.listener = listener;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        SharedPreferences prefs = context.getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+        token = prefs.getString("token", null);
+        Log.d("token", token);
+        if (token == null) {
+            Toast.makeText(context, "Anda belum melakukan Login", Toast.LENGTH_SHORT).show();
+            cancel(true);
+        }
     }
 
     @Override
@@ -37,6 +55,7 @@ public class FetchCityDataTask extends AsyncTask<String, Void, List<CityData>> {
             URL url = new URL(urls[0]);
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
+            urlConnection.setRequestProperty("Authorization", "Bearer " + token);
             InputStream inputStream = urlConnection.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             StringBuilder result = new StringBuilder();

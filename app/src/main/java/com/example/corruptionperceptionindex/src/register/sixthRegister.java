@@ -49,7 +49,7 @@ public class sixthRegister extends Fragment implements FetchQuestionsTask.FetchQ
         question7Spinner.setAdapter(adapter);
         question8Spinner.setAdapter(adapter);
 
-        new FetchQuestionsTask(this).execute();
+        new FetchQuestionsTask(requireContext(), this).execute();
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
