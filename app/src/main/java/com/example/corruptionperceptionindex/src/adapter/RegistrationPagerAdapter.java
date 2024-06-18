@@ -1,5 +1,7 @@
 package com.example.corruptionperceptionindex.src.adapter;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,12 +19,14 @@ import com.example.corruptionperceptionindex.src.register.thirdRegister;
 
 public class RegistrationPagerAdapter extends FragmentStateAdapter {
     private static final int NUM_PAGES = 6;
-    private String[] fragmentTitles = {"Daftar", "Melengkapi Profile", "Melengkapi Profile", "Persepsi Publik", "Persepsi Publik", "Persepsi Publik"};
+    private String[] fragmentTitles = {"Daftar", "Melengkapi Profile", "Domisiliku", "Persepsi Publik terhadap", "Persepsi Publik terhadap", "Persepsi Publik terhadap"};
     private int userId;
+    private Context context;
 
-    public RegistrationPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, int userId) {
+    public RegistrationPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, int userId, Context context) {
         super(fragmentManager, lifecycle);
         this.userId = userId;
+        this.context = context;
     }
 
     @NonNull
@@ -57,6 +61,11 @@ public class RegistrationPagerAdapter extends FragmentStateAdapter {
     }
 
     public String getFragmentTitle(int position) {
+        if (position >= 3 && position <= 5) {
+            SharedPreferences prefs = context.getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+            String kabupaten = prefs.getString("selectkabupaten", "");
+            return fragmentTitles[position] + " " + kabupaten;
+        }
         return fragmentTitles[position];
     }
 }

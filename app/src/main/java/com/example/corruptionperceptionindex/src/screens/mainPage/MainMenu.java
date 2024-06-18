@@ -178,6 +178,14 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
     }
 
     private void logOut() {
+        // Clear the token from SharedPreferences
+        SharedPreferences prefs = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.remove("token");
+        editor.putBoolean("isLoggedIn", false); // Optional: Update the login status
+        editor.apply();
+
+        // Navigate to the login activity
         Intent loginActivity = new Intent(MainMenu.this, LoginActivity.class);
         loginActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(loginActivity);

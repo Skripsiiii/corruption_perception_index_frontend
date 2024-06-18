@@ -3,6 +3,7 @@ package com.example.corruptionperceptionindex.src.screens.login;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -105,6 +106,16 @@ public class LoginActivity extends AppCompatActivity {
 
         private int userId;
         private String token;
+        private ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(LoginActivity.this);
+            progressDialog.setMessage("Harap tunggu...");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+        }
 
         @Override
         protected String doInBackground(String... params) {
@@ -168,18 +179,10 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            progressDialog.dismiss();
             // Display the result
             Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-//            if (result.equals("Login Berhasil")) {
-//                // Pass the user ID and step to the RegisterFragment
-//                Intent registerActivity = new Intent(LoginActivity.this, RegisterFragment.class);
-//                registerActivity.putExtra("USER_ID", userId);
-//                registerActivity.putExtra("STEP", 2); // Step 2 berarti halaman ketiga, karena index mulai dari 0
-//                startActivity(registerActivity);
-//                finish();
-//            } else {
-//                showAlert(result);
-//            }
 
             if (result.equals("Login Berhasil")) {
                 saveData(token);
@@ -199,7 +202,6 @@ public class LoginActivity extends AppCompatActivity {
             } else {
                 showAlert(result);
             }
-
         }
     }
 
@@ -273,6 +275,5 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("token", token);
         editor.apply();
-
     }
 }

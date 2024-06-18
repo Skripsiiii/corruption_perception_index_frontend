@@ -1,61 +1,61 @@
 package com.example.corruptionperceptionindex.src.connection;
 
 public class Koneksi {
-    String BASE_URL = "https://ca0a-2404-8000-1003-61d1-1173-ce40-4790-f0ed.ngrok-free.app/";
+    String BASE_URL = "https://ec1f-180-252-232-45.ngrok-free.app/api/";
 
     public String connLogin(){
-        String connLogin = BASE_URL +"api/auth/login";
-        return  connLogin;
+        return BASE_URL +"auth/login";
     }
     public String connRegister(){
-        String connLogin = BASE_URL +"api/auth/register";
-        return  connLogin;
+        return BASE_URL +"auth/register";
     }
     public String connDomicili(){
-        String conDomicili = BASE_URL +"api/addDomiciles";
-        return  conDomicili;
+        return BASE_URL +"addDomiciles";
     }
 
     public String connEducation(){
-        return BASE_URL +"api/educations";
+        return BASE_URL +"educations";
     }
 
     public String connOccupation(){
-        return  BASE_URL +"api/occupations";
+        return  BASE_URL +"occupations";
     }
     public String connProvince(){
-        return  BASE_URL +"api/provinces";
+        return  BASE_URL +"provinces";
     }
     public String connDataProvince(){
-        return  BASE_URL +"api/provinceData";
+        return  BASE_URL +"provinceData";
     }
 
 
     public String connKotaDataDimension(){
-        return  BASE_URL +"api/cityData/";
+        return  BASE_URL +"cityData/";
     }
     public String connDataDimension(){
-        return  BASE_URL +"api/dimensionCityData/";
+        return  BASE_URL +"dimensionCityData/";
     }
     public String connDataIndikator(){
-        return  BASE_URL +"api/indicatorCityData/";
+        return  BASE_URL +"indicatorCityData/";
     }
 
     public String connqmap(){
-        return  BASE_URL +"api/map";
+        return  BASE_URL +"map";
     }
 
     public String connquestions(){
-        return  BASE_URL +"api/questions";
+        return  BASE_URL +"questions";
     }
     public String connquestionsViewpoints(){
-        return  BASE_URL +"api/viewpoints";
+        return  BASE_URL +"viewpoints";
+    }
+    public String connquestartQuestion(){
+        return  BASE_URL +"startQuestionnaire";
     }
     public String connCities(int provinceId) {
-        return BASE_URL +"api/cities/" + provinceId;
+        return BASE_URL +"cities/" + provinceId;
     }
     public String connDimension(int provinceId) {
-        return BASE_URL +"api/cities/" + provinceId;
+        return BASE_URL +"cities/" + provinceId;
     }
 
 

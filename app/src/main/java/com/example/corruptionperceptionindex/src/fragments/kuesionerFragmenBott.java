@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -57,6 +58,7 @@ public class kuesionerFragmenBott extends Fragment {
     private int selectedCityId;
     com.google.android.material.textfield.TextInputLayout provinsiLayout, kabupatenkotaLayout;
     TextView kotaDaerahTV;
+    private String token;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -97,22 +99,45 @@ public class kuesionerFragmenBott extends Fragment {
         viewPager.setAdapter(adapter);
         setupAutoSlide();
 
+//        mulaiKuesioner.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent startQuestionaire = new Intent(getActivity(), dimenssionQuestion.class);
+//
+////                String selectedProvinsi = (String) provinsiSpinner.getSelectedItem();
+////                String selectedKabupaten = (String) kabupatenkotaSpiner.getSelectedItem();
+//                String tahun = tahunEdt.getText().toString();
+//                saveData(tahun);
+////
+////                // Log data yang akan disimpan
+////                Log.d("kuesionerFragmenBott", "Saving data - Provinsi: " + selectedProvinsi + ", Kabupaten: " + selectedKabupaten + ", Tahun: " + tahun);
+//
+//                startActivity(startQuestionaire);
+//            }
+//        });
+
+
         mulaiKuesioner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startQuestionaire = new Intent(getActivity(), dimenssionQuestion.class);
+                SharedPreferences prefs = requireActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+                int savedCityId = prefs.getInt("selectedCityId", -1); // Default value -1 jika tidak ditemukan
+                Log.d("SavedCityId", "Saved CityId: " + savedCityId);
 
-//                String selectedProvinsi = (String) provinsiSpinner.getSelectedItem();
-//                String selectedKabupaten = (String) kabupatenkotaSpiner.getSelectedItem();
                 String tahun = tahunEdt.getText().toString();
                 saveData(tahun);
-//
-//                // Log data yang akan disimpan
-//                Log.d("kuesionerFragmenBott", "Saving data - Provinsi: " + selectedProvinsi + ", Kabupaten: " + selectedKabupaten + ", Tahun: " + tahun);
 
+                if (savedCityId != -1) {
+                    Koneksi koneksi = new Koneksi();
+                    String url = koneksi.connquestartQuestion() + "/" + tahun + "/" + savedCityId;
+                    new StartQuestionnaireTask().execute(url);
+                }
+
+                Intent startQuestionaire = new Intent(getActivity(), dimenssionQuestion.class);
                 startActivity(startQuestionaire);
             }
         });
+
 
         provinsiSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -142,6 +167,13 @@ public class kuesionerFragmenBott extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+        SharedPreferences prefs = requireContext().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+        token = prefs.getString("token", null);
+        Log.d("token", token);
+        if (token == null) {
+            Toast.makeText(getContext(), "Anda belum melakukan Login", Toast.LENGTH_SHORT).show();
+        }
 
         return view;
     }
@@ -278,6 +310,45 @@ public class kuesionerFragmenBott extends Fragment {
             loadSavedData();
         }
     }
+
+    private class StartQuestionnaireTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            String urlString = params[0];
+            StringBuilder result = new StringBuilder();
+            HttpURLConnection urlConnection = null;
+
+            try {
+                URL url = new URL(urlString);
+                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestMethod("GET");
+                urlConnection.setRequestProperty("Authorization", "Bearer " + token);
+                BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                String line;
+
+                while ((line = reader.readLine()) != null) {
+                    result.append(line);
+                }
+                reader.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (urlConnection != null) {
+                    urlConnection.disconnect();
+                }
+            }
+
+            return result.toString();
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            // Tampilkan hasil atau lakukan sesuatu dengan hasilnya
+            Log.d("StartQuestionnaire", "Result: " + result);
+        }
+    }
+
 
     private void saveData(String tahun) {
         SharedPreferences prefs = requireActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
